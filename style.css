@@ -1,0 +1,14 @@
+body {
+  margin: 2em;
+  padding: 0;
+  font: 18px Roboto;
+}
+
+#masthead {}
+#masthead img { float: left; padding-right: 24px; }
+#masthead h1 { font-size: 60px; margin: 0; padding-top: 20px; }
+#masthead h2 { font-size: 24px; font-weight: 300; margin: 0; }
+
+#masthead + p { margin-top: 100px; clear: both; }
+a { font-weight: bold; color: #34495e; }
+p { padding-left: 184px; }
