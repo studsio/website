@@ -11,4 +11,10 @@ body {
 
 #masthead + p { margin-top: 80px; clear: both; }
 a { font-weight: bold; color: #34495e; }
+pre {
+  padding: 0 0 0 184px;
+  margin: 2em 0;
+  color: #777;
+  font: 14px 'Roboto Mono';
+}
 p { padding-left: 184px; }
