@@ -18,12 +18,36 @@
     <h2>Easily build reliable embedded software with <a href='http://fantom.org/'>Fantom</a></h2>
   </div>
 
-  <p>No Linux, no problem.</p>
-  <p>Build embedded systems from the comfort of macOS:</p>
+  <p>No Linux, no problem. Work from the comfort of macOS:</p>
 
-  <pre>$ src/build.fan
+  <div class='term'>
+  <div><span></span><span></span><span></span></div>
+  <pre>$ fan studs init hello
+Init project: ~/hello [Yn]
+
+$ cd hello
+$ src/build.fan
+compile [hello]
+  Compile [hello]
+    FindSourceFiles [1 files]
+    WritePod [file:~/hello/lib/fan/hello.pod]
+BUILD SUCCESS [34ms]!
+
 $ fan studs asm
-$ fan studs burn</pre>
+Assemble [rpi3]
+  Downloading rpi3 system... 100%
+  Install rpi3 system...
+  Build linux-armv6-vfp-hflt jre...
+  Stage rootfs...
+  Merge rootfs...
+  Assemble firmware image...
+  Release: ~/hello/studs/releases/hello-1.0.0-rpi3.fw
+
+$ fan studs burn
+Use 1.8GB memory card found at /dev/rdisk3? [Yn]
+Burning hello-1.0.0-rpi3.fw to /dev/rdisk3...
+100%</pre>
+    </div>
 
   <p>Website coming soon.</p>
   <p><a href='https://bitbucket.org/studs/studs'>BitBucket Repo</a></p>

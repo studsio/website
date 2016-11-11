@@ -1,5 +1,5 @@
 body {
-  margin: 4em 6em;
+  margin: 2em 6em 4em 6em;
   padding: 0;
   font: 18px Roboto;
 }
@@ -9,12 +9,35 @@ body {
 #masthead h1 { font-size: 60px; margin: 0; padding-top: 20px; }
 #masthead h2 { font-size: 24px; font-weight: 300; margin: 0; }
 
-#masthead + p { margin-top: 80px; clear: both; }
+#masthead + p { margin-top: 40px; clear: both; }
 a { font-weight: bold; color: #34495e; }
-pre {
-  padding: 0 0 0 184px;
-  margin: 2em 0;
-  color: #777;
-  font: 14px 'Roboto Mono';
+
+div.term {
+  margin: 2em 0 2em 184px;
+  width: 600px;
 }
+div.term > div {
+  border-radius: 6px 6px 0 0;
+  padding: 8px 10px;
+  background: #ddd;
+  height: 14px;
+}
+div.term > div span {
+  float: left;
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  margin-right: 6px;
+}
+div.term > div span:nth-child(1) { background: #ff6159; }
+div.term > div span:nth-child(2) { background: #ffbe2f; }
+div.term > div span:nth-child(3) { background: #28ca42; }
+div.term pre {
+  background: #000;
+  color: #fff;
+  margin: 0;
+  padding: 10px;
+  font: 12px 'Roboto Mono';
+}
+
 p { padding-left: 184px; }
