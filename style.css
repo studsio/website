@@ -34,7 +34,7 @@ a { font-weight: bold; color: #2c3e50; }
   padding: 0;
   top: 2em;
   width: 480px;
-  right: 50%;
+  right: 45%;
   font-size: 24px; font-weight: 300;
 }
 #overview ul li {}
@@ -51,7 +51,7 @@ a { font-weight: bold; color: #2c3e50; }
 #overview div.term {
   position: absolute;
   top: 2em;
-  left: 50%;
+  left: 55%;
   width: 600px;
 }
 #overview div.term > div {
