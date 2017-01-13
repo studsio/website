@@ -1,38 +1,76 @@
 body {
-  margin: 2em 6em 4em 6em;
+  margin: 0;
   padding: 0;
   font: 18px Roboto;
+  background: #f7f7f9;
 }
 
-#masthead {}
-#masthead img { float: left; padding-right: 24px; }
-#masthead h1 { font-size: 60px; margin: 0; padding-top: 20px; }
-#masthead h2 { font-size: 24px; font-weight: 300; margin: 0; }
+a { font-weight: bold; color: #2c3e50; }
+
+/*** Masthead ***/
+#masthead {
+  background: #2c3e50;
+  color: #fff;
+  padding: 3em 0;
+}
+#masthead a { color: #fff; }
+#masthead img { display: block; margin: 0 auto; }
+#masthead h1 { text-align: center; font-size: 48px; margin: 20px 0 10px 0; }
+#masthead h2 { text-align: center; font-size: 24px; font-weight: 300; margin: 0; }
 
 #masthead + p { margin-top: 40px; clear: both; }
-a { font-weight: bold; color: #34495e; }
 
-div.term {
-  margin: 2em 0 2em 184px;
+/*** Overview ***/
+#overview {
+  background: #f7f7f9;
+  padding: 2em 0;
+  position: relative;
+  height:460px;
+}
+#overview ul {
+  position: absolute;
+  list-style: none;
+  margin: 2em;
+  padding: 0;
+  top: 2em;
+  width: 480px;
+  right: 50%;
+  font-size: 24px; font-weight: 300;
+}
+#overview ul li {}
+#overview ul li + li { margin-top: 1em; }
+#overview ul li:last-child { margin-top: 2em; }
+#overview ul li a {
+  padding: 10px 20px;
+  background: #2980b9;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none
+}
+#overview ul li a:hover { background: #3498db; }
+#overview div.term {
+  position: absolute;
+  top: 2em;
+  left: 50%;
   width: 600px;
 }
-div.term > div {
+#overview div.term > div {
   border-radius: 6px 6px 0 0;
   padding: 8px 10px;
   background: #ddd;
   height: 14px;
 }
-div.term > div span {
+#overview div.term > div span {
   float: left;
   width: 14px;
   height: 14px;
   border-radius: 7px;
   margin-right: 6px;
 }
-div.term > div span:nth-child(1) { background: #ff6159; }
-div.term > div span:nth-child(2) { background: #ffbe2f; }
-div.term > div span:nth-child(3) { background: #28ca42; }
-div.term pre {
+#overview div.term > div span:nth-child(1) { background: #ff6159; }
+#overview div.term > div span:nth-child(2) { background: #ffbe2f; }
+#overview div.term > div span:nth-child(3) { background: #28ca42; }
+#overview div.term pre {
   background: #000;
   color: #fff;
   margin: 0;
@@ -40,4 +78,10 @@ div.term pre {
   font: 12px 'Roboto Mono';
 }
 
-p { padding-left: 184px; }
+/*** Footer ***/
+footer {
+  padding: 2em 0;
+  color: #7f8c8d;
+  text-align: center;
+}
+footer a { color: #7f8c8d; }

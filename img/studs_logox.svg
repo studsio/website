@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <title>studs_logox</title>
+  <g id="Board">
+    <polygon id="PCB" points="22.21 550.43 385.94 760.43 766.99 540.43 403.26 330.43 22.21 550.43" style="fill: #a8d397;stroke: #4e6045;stroke-miterlimit: 10;stroke-width: 10px"/>
+    <polygon id="PCB-2" data-name="PCB" points="22.21 550.43 385.94 760.43 766.99 540.43 403.26 330.43 22.21 550.43" style="fill: #a8d397;stroke: #a9d299;stroke-miterlimit: 10;stroke-width: 10px"/>
+    <g id="Chip">
+      <polygon points="455.22 420.43 351.3 480.43 455.67 540.33 559 481 455.22 420.43" style="fill: #ddd"/>
+      <line x1="355.26" y1="482.7" x2="455.67" y2="540.33" style="fill: none;stroke: #777;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 10px"/>
+      <line x1="554.56" y1="483.04" x2="455.67" y2="540.33" style="fill: none;stroke: #aaa;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 10px"/>
+    </g>
+    <g id="Pads">
+      <polygon points="126.17 590.43 160.81 610.43 247.42 560.43 212.78 540.43 126.17 590.43" style="fill: #e0dda4"/>
+      <polygon points="334.17 710.43 368.81 730.43 455.42 680.43 420.78 660.43 334.17 710.43" style="fill: #e0dda4"/>
+      <polygon points="282.17 680.43 316.81 700.43 403.42 650.43 368.78 630.43 282.17 680.43" style="fill: #e0dda4"/>
+      <polygon points="230.17 650.43 264.81 670.43 351.42 620.43 316.78 600.43 230.17 650.43" style="fill: #e0dda4"/>
+      <polygon points="178.17 620.43 212.81 640.43 299.42 590.43 264.78 570.43 178.17 620.43" style="fill: #e0dda4"/>
+    </g>
+    <g id="Lines">
+      <polyline points="456 560 456 620 524 660" style="fill: none;stroke: #9fc48d;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 10px"/>
+      <polyline points="490 540.33 490 600.51 559 640.35" style="fill: none;stroke: #9fc48d;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 10px"/>
+      <polyline points="351.3 600.43 385.33 580.67 386 541 403.42 530.52" style="fill: none;stroke: #9fc48d;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 10px"/>
+      <polyline points="247.21 540.33 282.17 520.52 351.13 540.33 386 520.33" style="fill: none;stroke: #9fc48d;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 10px"/>
+      <line x1="524.68" y1="520.33" x2="645.59" y2="590.34" style="fill: none;stroke: #9fc48d;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 10px"/>
+      <polyline points="559 500.35 593.96 520.33 628.26 520.33 697.67 560.33" style="fill: none;stroke: #9fc48d;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 10px"/>
+      <line x1="559" y1="460.35" x2="576.47" y2="450.43" style="fill: none;stroke: #9fc48d;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 10px"/>
+      <line x1="524.68" y1="440.33" x2="541.83" y2="430.43" style="fill: none;stroke: #9fc48d;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 10px"/>
+      <line x1="489.87" y1="420.43" x2="507.19" y2="410.43" style="fill: none;stroke: #9fc48d;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 10px"/>
+      <line x1="524.68" y1="560.53" x2="611.11" y2="610.43" style="fill: none;stroke: #9fc48d;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 10px"/>
+      <polyline points="265.07 450.65 299.49 470.52 334.17 470.54" style="fill: none;stroke: #9fc48d;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 10px"/>
+      <line x1="368.62" y1="410.43" x2="403.42" y2="430.52" style="fill: none;stroke: #9fc48d;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 10px"/>
+      <polyline points="403.42 630.34 420.5 620.38 420.5 560" style="fill: none;stroke: #9fc48d;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 10px"/>
+    </g>
+  </g>
+  <g id="Framing_Back" data-name="Framing Back">
+    <g id="Stud">
+      <polygon points="126.14 570.43 144 560 144 220 126.14 230.43 126.14 570.43" style="fill: #f1cd96;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+      <polygon points="91.49 550.43 126.14 570.43 126.14 230.43 91.49 210.43 91.49 550.43" style="fill: #d3b185;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+    </g>
+    <g id="Stud-2" data-name="Stud">
+      <polygon points="230.13 510.43 248 500 248 160 230.13 170.43 230.13 510.43" style="fill: #f1cd96;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+      <polygon points="195.49 490.43 230.13 510.43 230.13 170.43 195.49 150.43 195.49 490.43" style="fill: #d3b185;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+    </g>
+    <g id="Stud-3" data-name="Stud">
+      <polygon points="334.13 450.43 352 440 352 100 334.13 110.43 334.13 450.43" style="fill: #f1cd96;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+      <polygon points="299.49 430.43 334.13 450.43 334.13 110.43 299.49 90.43 299.49 430.43" style="fill: #d3b185;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+    </g>
+    <g id="Stud-4" data-name="Stud">
+      <polygon points="420.58 60.43 420.5 400.5 437.9 390.43 437.9 50.43 420.58 60.43" style="fill: #f1cd96;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+      <polygon points="420.5 400.5 385.94 380.43 385.5 40 420.58 60.43 420.5 400.5" style="fill: #d3b185;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+    </g>
+    <g id="Header">
+      <polygon points="91.49 190.43 91.49 210.43 126.14 230.43 126.14 210.43 91.49 190.43" style="fill: #d3b185;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+      <polygon points="126.14 210.43 126.14 230.43 437.9 50.43 438.64 32 126.14 210.43" style="fill: #f1cd96;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+      <polygon points="91.49 190.43 404 12 438.64 32 126.14 210.43 91.49 190.43" style="fill: #f1cd96;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+    </g>
+  </g>
+  <g id="Framing_Right" data-name="Framing Right">
+    <polygon points="126.14 212.5 126.14 230.43 351.42 360.37 351.3 340.38 126.14 212.5" style="fill: #d3b185;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+    <polygon points="161 190.5 126.14 210.43 351.3 340.38 385.86 320.39 161 190.5" style="fill: #f1cd96;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+  </g>
+  <g id="Framing_Right-2" data-name="Framing Right">
+    <polygon points="403 53 403 70.93 628.28 200.87 628.17 180.88 403 53" style="fill: #d3b185;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+    <polygon points="437.87 31 403 50.93 628.17 180.88 662.73 160.89 437.87 31" style="fill: #f1cd96;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+  </g>
+  <g id="Framing_Front" data-name="Framing Front">
+    <g id="Stud-5" data-name="Stud">
+      <polygon points="386.13 720.43 404 710 404 370 386.13 380.43 386.13 720.43" style="fill: #f1cd96;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+      <polygon points="351.49 700.43 386.13 720.43 386.13 380.43 351.49 360.43 351.49 700.43" style="fill: #d3b185;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+    </g>
+    <g id="Stud-6" data-name="Stud">
+      <polygon points="490.13 660.43 508 650 508 310 490.13 320.43 490.13 660.43" style="fill: #f1cd96;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+      <polygon points="455.49 640.43 490.13 660.43 490.13 320.43 455.49 300.43 455.49 640.43" style="fill: #d3b185;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+    </g>
+    <g id="Stud-7" data-name="Stud">
+      <polygon points="594.13 600.43 612 590 612 250 594.13 260.43 594.13 600.43" style="fill: #f1cd96;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+      <polygon points="559.49 580.43 594.13 600.43 594.13 260.43 559.49 240.43 559.49 580.43" style="fill: #d3b185;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+    </g>
+    <g id="Stud-8" data-name="Stud">
+      <polygon points="680.58 210.43 680.5 550.5 697.9 540.43 697.9 200.43 680.58 210.43" style="fill: #f1cd96;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+      <polygon points="680.5 550.5 645.94 530.43 645.5 190 680.58 210.43 680.5 550.5" style="fill: #d3b185;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+    </g>
+    <g id="Header-2" data-name="Header">
+      <polygon points="351.49 340.43 351.49 360.43 386.13 380.43 386.13 360.43 351.49 340.43" style="fill: #d3b185;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+      <polygon points="386.13 360.43 386.13 380.43 697.9 200.43 698.64 182 386.13 360.43" style="fill: #f1cd96;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+      <polygon points="351.49 340.43 664 162 698.64 182 386.13 360.43 351.49 340.43" style="fill: #f1cd96;stroke: #84653d;stroke-linejoin: round;stroke-width: 6px"/>
+    </g>
+  </g>
+</svg>
