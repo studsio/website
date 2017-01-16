@@ -35,7 +35,7 @@ class BuildDocs
         echo(" $f.name")
         out := outDir + `${f.basename}.html`
         printHeader(out)
-        bash("pandoc -f markdown $f.osPath >> $out.osPath")
+        bash("pandoc -S -f markdown $f.osPath >> $out.osPath")
         printFooter(out)
       }
       return 0
