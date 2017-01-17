@@ -37,7 +37,9 @@ class BuildDocs
 
       // read and order chapters
       chapters = srcDir.listFiles.rw
+      chapters.moveTo(chapters.find |f| { f.basename=="BuildingFw"     }, 0)
       chapters.moveTo(chapters.find |f| { f.basename=="GettingStarted" }, 0)
+      chapters.moveTo(chapters.find |f| { f.basename=="AboutStuds"     }, 0)
 
       // convert chapters
       chapters.each |f|
@@ -78,7 +80,7 @@ class BuildDocs
         <body>
         <header>
           <a href='../index.html'>Home</a>
-          <a href='GettingStarted.html'>Documentation</a>
+          <a href='AboutStuds.html'>Documentation</a>
           <a href='https://bitbucket.org/studs/core'>BitBucket</a>
         </header>
         <div class='main'>

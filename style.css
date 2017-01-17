@@ -11,8 +11,13 @@ a { font-weight: bold; color: #2c3e50; }
 #masthead {
   background: #2c3e50;
   color: #fff;
-  padding: 3em 0;
+  padding: 1em 0 4em 0;
 }
+#masthead header { width: 960px; margin: 1em auto 2em auto; }
+#masthead header a { font-weight: normal; text-decoration: none; }
+#masthead header a + a { margin-left: 1em; }
+#masthead header a:hover { text-decoration: underline; }
+#masthead header a:last-child { float: right; }
 #masthead a { color: #fff; }
 #masthead img { display: block; margin: 0 auto; }
 #masthead h1 { text-align: center; font-size: 48px; margin: 20px 0 10px 0; }
@@ -53,6 +58,7 @@ a { font-weight: bold; color: #2c3e50; }
   top: 2em;
   left: 55%;
   width: 600px;
+  max-width: 100;
 }
 #overview div.term > div {
   border-radius: 6px 6px 0 0;

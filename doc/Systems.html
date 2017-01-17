@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <title>Systems &ndash; Studs</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+  <!--
+  <meta name='viewport' content='initial-scale=1.0' />
+  <meta name='description' content='' />
+  -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:700,400' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' type='text/css' href='doc.css' />
+</head>
+<body>
+<header>
+  <a href='../index.html'>Home</a>
+  <a href='AboutStuds.html'>Documentation</a>
+  <a href='https://bitbucket.org/studs/core'>BitBucket</a>
+</header>
+<div class='main'>
+<h1 id="systems">Systems</h1>
+<p>Studs systems are simply minimal Linux images built using <a href="https://buildroot.org">Buildroot</a>. They are designed to be small and lightweight, and push as much implementation detail as possible up into the Studs Fantom layer. This keeps systems simple and improves portability for applications.</p>
+<h2 id="supported-systems">Supported Systems</h2>
+<p>Studs includes several pre-built systems as part of the open source project:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Platform</th>
+<th>Repo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>bbb</td>
+<td>BeagleBone Black</td>
+<td><a href="https://https://bitbucket.org/studs/system-bbb">Repo</a></td>
+</tr>
+<tr class="even">
+<td>rpi3</td>
+<td>Raspberry Pi 3</td>
+<td><a href="https://https://bitbucket.org/studs/system-rpi3">Repo</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="building-a-system">Building a System</h2>
+<p>To build a Studs system you will need a Linux PC or VM. This project supports building on macOS using <a href="https://www.vagrantup.com">Vagrant</a>. But most any Linux setup will work. This section will cover how to build an existing system from source. The follow section will cover how to create your own systems.</p>
+<h3 id="setup-build-directory">Setup Build Directory</h3>
+<p>First step is to setup our build directory and pull the system sources we will be using. This step should be done on the host system (not in your VM).</p>
+<p>Grab <code>hg</code> if needed:</p>
+<pre><code># macOS
+$ brew install mercurial
+
+# Debian/Ubuntu
+$ sudo apt-get install mercurial</code></pre>
+<p>Next pull the <code>base</code> and <code>bbb</code> system sources under a root <code>studs</code> directory:</p>
+<pre><code>$ mkdir studs
+$ cd studs
+$ hg clone ssh://hg@bitbucket.org/studs/system
+$ hg clone ssh://hg@bitbucket.org/studs/system-bbb</code></pre>
+<p>Afterwards your <code>studs</code> directory should look like this:</p>
+<pre><code>studs
+├── system
+└── system-bbb</code></pre>
+<h3 id="macos-vagrant-setup">macOS Vagrant Setup</h3>
+<p>The simplest way to build on macOS is to use the supplied <a href="https://bitbucket.org/studs/system/src/tip/vagrant/Vagrantfile">Vagrantfile</a>, which will allow you to host and edit the source on your Mac, and build on a Linux VM. To get started with Vagrant:</p>
+<ol style="list-style-type: decimal">
+<li><p>Install <a href="https://www.vagrantup.com">Vagrant</a></p></li>
+<li><p>Install <a href="https://www.virtualbox.org">VirtualBox</a></p></li>
+<li><p>Modify the defaults in <code>system/vagrant/Vagrantfile</code> for memory/cores to match your host:</p>
+<pre><code># Change here for more or less memory/cores
+VM_MEMORY=8192
+VM_CORES=4</code></pre></li>
+<li><p>Provision your VM – this will take a few minutes while it downloads and configures your new image:</p>
+<pre><code>$ cd system/vagrant
+$ vagrant up</code></pre></li>
+<li><p>When provisioning is complete, log into your VM:</p>
+<pre><code>$ vagrant ssh</code></pre></li>
+</ol>
+<p>Your host <code>studs</code> source directory will automatically be shared when you boot your Vagrant VM. It will be mounted under <code>~/studs</code> on Linux:</p>
+<pre><code>vagrant@jessie:~$ ls ~/studs
+system  system-bbb</code></pre>
+<p>Quick-start to using Vagrant:</p>
+<pre><code>$ vagrant up       # boot VM
+$ vargant ssh      # login to VM
+$ vagrant halt     # shutdown VM -- &#39;vagrant up&#39; to reboot
+$ vagrant destory  # delete VM -- &#39;vagrant up&#39; to recreate</code></pre>
+<p>Once Vagrant is setup and you have booted and logged into your VM, continue to the Setup section below to complete setup.</p>
+<h3 id="building">Building</h3>
+<p>On Linux, first install required dependencies:</p>
+<pre><code>$ sudo apt-get update
+$ sudo apt-get install git g++ libssl-dev libncurses5-dev \
+  bc m4 make unzip cmake</code></pre>
+<p>Once you have setup Linux and download system sources, setup your build configuration for the intended target:</p>
+<pre><code>$ system/setup.sh bbb</code></pre>
+<p>The <code>setup.sh</code> script will:</p>
+<ul>
+<li>Download and install Buildroot</li>
+<li>Configure Buildroot to compile our Studs project</li>
+<li>Create an output working directory for Buildroot</li>
+</ul>
+<p>Change to your output directory and run <code>make</code>:</p>
+<pre><code># macOS Vagrant -- we need to store our output directory outside of the
+# shared folder under Vagrant, since VirtualBox does not support creating
+# hardlinks in shared folders -- which Buildroot requires
+$ cd /home/vagrant/output-bbb/
+$ make
+
+# Under native Linux the output direcotry will be created as a peer to
+# the system source directories
+$ cd output-bbb
+$ make</code></pre>
+<p>After we have run <code>make</code> a new tarball will be created in the target directory:</p>
+<pre><code>system-bbb/releases/studs-system-bbb-1.0.0.tar.gz</code></pre>
+<h2 id="creating-a-new-system">Creating a New System</h2>
+<p>TODO</p>
+<aside>
+<h3>Overview</h3>
+<ul>
+<li class='h1'><a href='AboutStuds.html'>AboutStuds</a></li>
+<li class='h1'><a href='GettingStarted.html'>GettingStarted</a></li>
+</ul><h3>Application</h3><ul>
+<li class='h1'><a href='BuildingFw.html'>BuildingFw</a></li>
+<li class='h1'><a href='Daemons.html'>Daemons</a></li>
+<li class='h1'><a href='faninit.html'>faninit</a></li>
+<li class='h1'><a href='Leds.html'>Leds</a></li>
+<li class='h1'><a href='Networking.html'>Networking</a></li>
+<li class='h1'><a href='NTP.html'>NTP</a></li>
+</ul><h3>System</h3><ul>
+<li class='h1'><a href='#systems'>Systems</a></li>
+<li class='h2'><a href='#supported-systems'>Supported-systems</a></li>
+<li class='h2'><a href='#building-a-system'>Building-a-system</a></li>
+<li class='h3'><a href='#setup-build-directory'>Setup-build-directory</a></li>
+<li class='h3'><a href='#macos-vagrant-setup'>Macos-vagrant-setup</a></li>
+<li class='h3'><a href='#building'>Building</a></li>
+<li class='h2'><a href='#creating-a-new-system'>Creating-a-new-system</a></li>
+</ul>
+</aside>
+</div>
+<footer>
+</footer>
+</body>
+</html>
