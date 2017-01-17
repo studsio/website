@@ -63,11 +63,11 @@ $ hg clone ssh://hg@bitbucket.org/studs/system-bbb</code></pre>
 ├── system
 └── system-bbb</code></pre>
 <h3 id="macos-vagrant-setup">macOS Vagrant Setup</h3>
-<p>The simplest way to build on macOS is to use the supplied <a href="https://bitbucket.org/studs/system/src/tip/vagrant/Vagrantfile">Vagrantfile</a>, which will allow you to host and edit the source on your Mac, and build on a Linux VM. To get started with Vagrant:</p>
+<p>The simplest way to build on macOS is to use the supplied <a href="https://bitbucket.org/studs/system/src/tip/Vagrantfile">Vagrantfile</a>, which will allow you to host and edit the source on your Mac, and build on a Linux VM. To get started with Vagrant:</p>
 <ol style="list-style-type: decimal">
 <li><p>Install <a href="https://www.vagrantup.com">Vagrant</a></p></li>
 <li><p>Install <a href="https://www.virtualbox.org">VirtualBox</a></p></li>
-<li><p>Modify the defaults in <code>system/vagrant/Vagrantfile</code> for memory/cores to match your host:</p>
+<li><p>Modify the defaults in <code>system/Vagrantfile</code> for memory/cores to match your host:</p>
 <pre><code># Change here for more or less memory/cores
 VM_MEMORY=8192
 VM_CORES=4</code></pre></li>
