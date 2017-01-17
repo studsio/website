@@ -23,21 +23,33 @@ class BuildDocs
 
   Void bash(Str cmd) { Process(["bash", "-c", cmd]).run.join }
 
+  ** Doc chapter order
+  File[] chapters := [,]
+
   Int main()
   {
     try
     {
       echo("BuildDocs [$srcDir.osPath]")
+
+      // cleanup old docs
       bash("rm $outDir.osPath/*.html")
-      writeIndex
-      srcDir.listFiles.each |f|
+
+      // read and order chapters
+      chapters = srcDir.listFiles.rw
+      chapters.moveTo(chapters.find |f| { f.basename=="GettingStarted" }, 0)
+
+      // convert chapters
+      chapters.each |f|
       {
         echo(" $f.name")
         out := outDir + `${f.basename}.html`
         printHeader(out)
         bash("pandoc -S -f markdown $f.osPath >> $out.osPath")
+        printTOC(out)
         printFooter(out)
       }
+
       return 0
     }
     catch (Err err)
@@ -45,23 +57,6 @@ class BuildDocs
       err.trace
       return 1
     }
-  }
-
-  Void writeIndex()
-  {
-    index := outDir + `index.html`
-    printHeader(index)
-    out := index.out(true)
-    out.printLine("<h1>Documentation Index</h1>")
-    out.printLine("<ul>")
-    srcDir.listFiles.sort |a,b| { a.basename <=> b.basename }.each |f|
-    {
-      uri := "${f.basename}.html"
-      out.printLine("<li><a href='$uri'>$f.basename.toXml</a></li>")
-    }
-    out.printLine("</ul>")
-    out.flush.close
-    printFooter(index)
   }
 
   Void printHeader(File f)
@@ -83,16 +78,63 @@ class BuildDocs
         <body>
         <header>
           <a href='../index.html'>Home</a>
-          <a href='index.html'>Index</a>
+          <a href='GettingStarted.html'>Documentation</a>
           <a href='https://bitbucket.org/studs/core'>BitBucket</a>
         </header>
+        <div class='main'>
         """).flush.close
+  }
+
+  Void printTOC(File f)
+  {
+    map := Str:Str[:] { ordered=true }
+    f.in.readAllLines.each |s|
+    {
+      if (s.startsWith("<h1 id=") || s.startsWith("<h2 id=") || s.startsWith("<h3 id="))
+      {
+        start := "<h1 id=\"".size
+        end   := s.index("\"", start+1)
+        name  := s[start..<end]
+        map[name] = s[1..2]
+      }
+    }
+
+    out := f.out(true)
+    out.printLine("<aside>")
+    out.printLine("<h3>Overview</h3>")
+    out.printLine("<ul>")
+
+    chapters.each |ch|
+    {
+      switch (ch.basename)
+      {
+         case "BuildingFw": out.printLine("</ul><h3>Application</h3><ul>")
+         case "Systems":    out.printLine("</ul><h3>System</h3><ul>")
+      }
+
+      if (ch.basename == f.basename)
+      {
+        map.each |v,k|
+        {
+          dis := k.replace("_", " ").capitalize
+          out.printLine("<li class='$v'><a href='#$k'>$dis</a></li>")
+        }
+      }
+      else
+      {
+        out.printLine("<li class='h1'><a href='${ch.basename}.html'>$ch.basename</a></li>")
+      }
+    }
+    out.printLine("</ul>")
+    out.printLine("</aside>")
+    out.flush.close
   }
 
   Void printFooter(File f)
   {
     f.out(true).print(
-     """<footer>
+     """</div>
+        <footer>
         </footer>
         </body>
         </html>
