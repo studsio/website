@@ -65,11 +65,12 @@ code:not(pre code) {
   border-radius: 3px;
 }
 
-pre, pre code { font: 13px Roboto Mono; }
+pre, pre code { font: 13px Consolas, Menlo; }
 pre {
-  padding: 1em;
+  padding: 16px;
   background: #f7f7f7;
   border-radius: 3px;
+  line-height: 1.4em;
 }
 
 footer {

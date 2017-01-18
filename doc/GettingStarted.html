@@ -32,16 +32,16 @@ $ fanr install -r http://eggbox.fantomfactory.org/fanr/ studs</code></pre>
 <pre><code>$ fan studs init myproj</code></pre>
 <p>This will create a stand-alone <a href="http://fantom.org/doc/docLang/Env#PathEnv">PathEnv</a> to keep our application pods separate from our master Fantom lib:</p>
 <pre><code>myproj/
- ├─ fan.props            # fan config for PathEnv
- ├─ src/
- |   ├─ fan/
- |   |   └─ Main.fan     # application entry point
- |   └─ build.fan        # project build file
- ├─ studs.props          # firmware configuration file
- └─ studs/
-     ├─ jres/            # target JREs installed here
-     ├─ systems/         # target systems installed here
-     └─ releases/        # compiled firmware images put here</code></pre>
+├── fan.props            # fan config for PathEnv
+├── src/
+│   ├── fan/
+│   │   └── Main.fan     # application entry point
+│   └── build.fan        # project build file
+├── studs.props          # firmware configuration file
+└── studs/
+    ├── jres/            # target JREs installed here
+    ├── systems/         # target systems installed here
+    └── releases/        # compiled firmware images put here</code></pre>
 <p><code>studs.props</code> contains the configuration for your firmware, including the targets you wish to build for. The default target is <code>rpi3</code>, but you may change or add additional targets by commenting/uncommenting them:</p>
 <pre><code># studs.props
 
@@ -71,9 +71,9 @@ target.rpi3=true</code></pre>
 </table>
 <p>Next copy the tar into your project directory:</p>
 <pre><code>myproj/
- └─ studs/
-     └─ jres/
-         └─ ejdk-8u###-linux-armv6-vfp-hflt.tar.gz</code></pre>
+└── studs/
+    └── jres/
+        └── ejdk-8u###-linux-armv6-vfp-hflt.tar.gz</code></pre>
 <p>From here the build tools will manage creating the correct image for your device.</p>
 <h2 id="build-your-project"><strong>Build your Project</strong></h2>
 <p>Now we’re ready to build!</p>
@@ -82,9 +82,9 @@ $ fan studs asm</code></pre>
 <p>This will compile your Fantom application and assemble the firmware images for your target device(s). The first time <code>studs asm</code> is run the system dependencies will be downloaded which can take a few minutes. After that firmware builds will be fast.</p>
 <p>After building the firmware, images are placed under the <code>releases</code> dir, where the naming convention is <code>proj-version-target</code>:</p>
 <pre><code>myproj/
- └─ studs/
-     └─ releases/
-         └─ myproj-1.0.0-rpi3.fw</code></pre>
+└── studs/
+    └── releases/
+        └── myproj-1.0.0-rpi3.fw</code></pre>
 <h2 id="running-your-project"><strong>Running your Project</strong></h2>
 <p>To run your freshly minted project we need to burn our firmware image onto a SD card:</p>
 <pre><code>$ fan studs burn</code></pre>
