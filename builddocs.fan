@@ -119,13 +119,16 @@ class BuildDocs
       {
         map.each |v,k|
         {
-          dis := k.replace("_", " ").capitalize
+          dis := v == "h1"
+            ? k.split('-').map |s| { s.capitalize }.join(" ")
+            : k.replace("-", " ").capitalize
           out.printLine("<li class='$v'><a href='#$k'>$dis</a></li>")
         }
       }
       else
       {
-        out.printLine("<li class='h1'><a href='${ch.basename}.html'>$ch.basename</a></li>")
+        dis := ch.basename.toDisplayName
+        out.printLine("<li class='h1'><a href='${ch.basename}.html'>$dis</a></li>")
       }
     }
     out.printLine("</ul>")
