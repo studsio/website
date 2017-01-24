@@ -40,6 +40,7 @@ class BuildDocs
       chapters.moveTo(chapters.find |f| { f.basename=="BuildingFw"     }, 0)
       chapters.moveTo(chapters.find |f| { f.basename=="GettingStarted" }, 0)
       chapters.moveTo(chapters.find |f| { f.basename=="AboutStuds"     }, 0)
+      chapters.moveTo(chapters.find |f| { f.basename=="Systems"        }, -1)
 
       // convert chapters
       chapters.each |f|
