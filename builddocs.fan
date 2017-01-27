@@ -35,8 +35,14 @@ class BuildDocs
       // cleanup old docs
       bash("rm $outDir.osPath/*.html")
 
+      // copy artwork
+      srcDir.listFiles.each |f|
+      {
+        if (f.ext == "svg") f.copyTo(outDir + `$f.name`, ["overwrite":true])
+      }
+
       // read and order chapters
-      chapters = srcDir.listFiles.rw
+      chapters = srcDir.listFiles.findAll |f| { f.ext=="md" }.rw
       chapters.moveTo(chapters.find |f| { f.basename=="BuildingFw"     }, 0)
       chapters.moveTo(chapters.find |f| { f.basename=="GettingStarted" }, 0)
       chapters.moveTo(chapters.find |f| { f.basename=="AboutStuds"     }, 0)

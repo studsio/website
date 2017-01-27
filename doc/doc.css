@@ -73,6 +73,10 @@ pre {
   line-height: 1.4em;
 }
 
+div.figure { text-align: center; }
+div.figure img { max-width: 600px; }
+div.figure p.caption { display: none; }
+
 footer {
   height: 2em;
 }

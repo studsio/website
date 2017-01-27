@@ -19,15 +19,36 @@
 </header>
 <div class='main'>
 <h1 id="about-studs">About Studs</h1>
-<p>TODO: actually describe this doo-hickey :)</p>
+<p>With the increasing availability of low-cost embedded platforms, such as the Raspberry Pi and BeagleBone, there is a huge opportunity to bring embedded development to a much larger community, both as a hobby and commercially. Studs is an attempt to fill part of that void for developers who’s background or preference favors languages similar to <a href="http://fantom.org">Fantom</a>.</p>
+<p>The goal for Studs is to abstract away the complexity of booting and interfacing with hardware, and provide a turn-key framework for working with embedded systems. This allows developers to focus on what matters – the application – and avoid boiler plate like boot loaders, networking, serial communication, and updating firmware.</p>
+<p>From a developer’s perspective, the worldview for a piece of hardware is presented purely through a Fantom API. This keeps the abstractions high and the interactions consistent. In most cases you never need to leave Fantom. However, if a low level feature is required, Studs also includes easy to use cross-compiler toolchains to easily compile and package C binaries into your firmware.</p>
+<h2 id="architecture">Architecture</h2>
+<p>Studs is composed of primarily 3 layers:</p>
+<div class="figure">
+<img src="StudsArch.svg" alt="Studs Architecture" />
+<p class="caption">Studs Architecture</p>
+</div>
+<p>Looking at each section – starting from the bottom up:</p>
+<h3 id="system">System</h3>
+<p>Studs <a href="Systems.html">systems</a> are simply minimal Linux images built using <a href="https://buildroot.org">Buildroot</a>. They provide only the bare necessities for booting onto a specific hardware platform.</p>
+<p>Studs replaces the standard <code>/etc/init</code> with a custom <a href="faninit.html">faninit</a> binary that boots directly into the JVM and starts the Fantom Application. By skipping general initialization, and only brining up the required sub-systems, Studs applications can boot in seconds.</p>
+<h3 id="framework">Framework</h3>
+<p>The bulk of Studs lives at the Framework level. Here we provide a suite of Fantom APIs to interact with the underlying hardware.</p>
+<p>At boot time Studs will spawn a number of Fantom <a href="Daemons.html">daemons</a>. These are background threads that manage system and hardware resources. In many cases these daemons will interface with a corresponding native binary.</p>
+<p>In general we eschew working with the standard linux utilities (such as <code>ifconfig</code> or <code>udhcpd</code>), in favor of using dedicated native daemons that efficiently marshal messages to and from the JVM process and interact directly with kernel. The standard utilities work great when scripting or manually managing a system, but they tend to be brittle when tooled – requiring lots of assumptions for how they work and what to expect as output and error conditions. By using custom binaries we can reduce unnecessary code and simplify integration, which results in a more robust system.</p>
+<h3 id="application">Application</h3>
+<p>Everything up until this point is included “out-of-the-box”. The last piece – the application – is where developers start. A simple “Hello World” application can be created, compiled, and loaded onto a hardware device in only a few minutes. This lets developers dive right into the most important part of their product.</p>
 <h2 id="origin">Origin</h2>
-<p>Studs grew out of work on a commercial <a href="http://fantom.org">Fantom</a>-based embedded system. One of the key take aways from that project was a large percentage of the effort involved in getting Fantom operating on, and interacting with, embedded hardware was largely general purpose (and boiler-plate).</p>
-<p>With the increasing availability of low-cost embedded platforms, such as the Raspberry Pi and Beaglebone, there is a huge opportunity to bring embedded development to a much larger community, both as a hobby and commercially. Studs is an attempt to fill part of that void for developers who’s background or preference favors languages simliar to <a href="http://fantom.org">Fantom</a>.</p>
+<p>Studs grew out of work on a commercial <a href="http://fantom.org">Fantom</a>-based embedded system. One of the key take aways from that project was a large percentage of the effort involved in getting Fantom operating on, and interacting with, embedded hardware was primarily general purpose (and boiler-plate).</p>
 <p>Early in the original design of Studs, the <a href="http://nerves-project.org">Nerves Project</a> began to gain popularity. Nerves bears an uncanny similarity to what Studs was attempting to achieve – as well as including a number of very useful design decisions that had not been considered. The present Studs project is largely based on the phenomenal work of the <a href="https://github.com/orgs/nerves-project/people">Nerves team</a>.</p>
 <aside>
 <h3>Overview</h3>
 <ul>
 <li class='h1'><a href='#about-studs'>About Studs</a></li>
+<li class='h2'><a href='#architecture'>Architecture</a></li>
+<li class='h3'><a href='#system'>System</a></li>
+<li class='h3'><a href='#framework'>Framework</a></li>
+<li class='h3'><a href='#application'>Application</a></li>
 <li class='h2'><a href='#origin'>Origin</a></li>
 <li class='h1'><a href='GettingStarted.html'>Getting Started</a></li>
 </ul><h3>Application</h3><ul>
