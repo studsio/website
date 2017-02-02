@@ -31,7 +31,7 @@
 <p>Looking at each section – starting from the bottom up:</p>
 <h3 id="system">System</h3>
 <p>Studs <a href="Systems.html">systems</a> are simply minimal Linux images built using <a href="https://buildroot.org">Buildroot</a>. They provide only the bare necessities for booting onto a specific hardware platform.</p>
-<p>Studs replaces the standard <code>/sbin/init</code> with a custom <a href="faninit.html">faninit</a> binary that boots directly into the JVM and starts the Fantom Application. By skipping general initialization, and only brining up the required sub-systems, Studs applications can boot in seconds.</p>
+<p>Studs replaces the standard <code>/sbin/init</code> with a custom <a href="faninit.html">faninit</a> binary that boots directly into the JVM and starts the Fantom Application. By skipping general initialization, and only bringing up the required sub-systems, Studs applications can boot in seconds.</p>
 <h3 id="framework">Framework</h3>
 <p>The bulk of Studs lives at the Framework level. Here we provide a suite of Fantom APIs to interact with the underlying hardware.</p>
 <p>At boot time Studs will spawn a number of Fantom <a href="Daemons.html">daemons</a>. These are background threads that manage system and hardware resources. In many cases these daemons will interface with a corresponding native binary.</p>
