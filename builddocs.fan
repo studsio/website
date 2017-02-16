@@ -126,9 +126,7 @@ class BuildDocs
       {
         map.each |v,k|
         {
-          dis := v == "h1"
-            ? k.split('-').map |s| { s.capitalize }.join(" ")
-            : k.replace("-", " ").capitalize
+          dis := toDis(k)
           out.printLine("<li class='$v'><a href='#$k'>$dis</a></li>")
         }
       }
@@ -152,5 +150,16 @@ class BuildDocs
         </body>
         </html>
         """).flush.close
+  }
+
+  Str toDis(Str name, Int sep := '-')
+  {
+    name.lower.split(sep).map |s|
+    {
+      if (s == "a")    return "a"
+      if (s == "your") return "your"
+      if (s == "jre")  return "JRE"
+      return s.capitalize
+    }.join(" ")
   }
 }
