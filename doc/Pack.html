@@ -23,9 +23,9 @@
 <h2 id="fantom-usage">Fantom Usage</h2>
 <p>Pack encodes/decodes between Fantom <a href="http://fantom.org/doc/sys/Map">Map</a> and <a href="http://fantom.org/doc/sys/Buf">Buf</a> types. The supported primitive value types for Pack maps are:</p>
 <ul>
-<li>Bool</li>
-<li>Int</li>
-<li>Str</li>
+<li><code>Bool</code></li>
+<li><code>Int</code></li>
+<li><code>Str</code></li>
 </ul>
 <p>Additionally Pack map values can be <code>Obj[]</code> lists and <code>Str:Obj</code> maps of the above primitives.</p>
 <pre><code>// encode
@@ -41,7 +41,42 @@ map := [
   &quot;b&quot;: [&quot;foo&quot;:false, &quot;bar&quot;:&quot;cool beans&quot;]
 ]</code></pre>
 <h2 id="c-usage">C Usage</h2>
-<p>TODO</p>
+<p>The Pack C library is defined in <code>pack.h</code> and models the name/value pairs using <code>struct pack_map</code>. The primitive value types are stored as:</p>
+<ul>
+<li><code>bool</code></li>
+<li><code>int64_t</code></li>
+<li><code>char *</code></li>
+</ul>
+<p>Note all integers are 64-bit signed longs for consistency with how integers are modeled in Fantom.</p>
+<pre><code> // allocate
+ struct pack_map *map = pack_map_new();
+ pack_map_free(map);
+
+ // setters
+ pack_setb(map, &quot;a&quot;, true);
+ pack_seti(map, &quot;b&quot;, 12);
+ pack_sets(map, &quot;c&quot;, &quot;foo&quot;);
+
+ // getters
+ bool b = pack_getb(map, &quot;a&quot;);
+ int64_t i = pack_geti(map, &quot;b&quot;);
+ char *s = pack_gets(map, &quot;c&quot;);
+
+ if (pack_has(&quot;foo&quot;)) { ... }
+
+ // encode
+ uint8_t *buf = pack_encode(map);
+
+ // decode
+ struct pack_map *map = pack_decode(buf);
+
+ // maps
+ struct pack_map *a = pack_map_new();
+ pack_setb(a, &quot;foo&quot;, true);
+ pack_sets(a, &quot;bar&quot;, &quot;cool beans&quot;);
+
+ pack_setm(map, &quot;a&quot;, a);
+ sub = pack_getm(map, &quot;a&quot;);</code></pre>
 <h2 id="spec">Spec</h2>
 <p>TODO</p>
 <aside>
@@ -49,8 +84,7 @@ map := [
 <ul>
 <li class='h1'><a href='AboutStuds.html'>About Studs</a></li>
 <li class='h1'><a href='GettingStarted.html'>Getting Started</a></li>
-</ul><h3>Application</h3><ul>
-<li class='h1'><a href='BuildingFw.html'>Building Fw</a></li>
+<li class='h1'><a href='Building.html'>Building</a></li>
 <li class='h1'><a href='Daemons.html'>Daemons</a></li>
 <li class='h1'><a href='faninit.html'>Faninit</a></li>
 <li class='h1'><a href='Leds.html'>Leds</a></li>
