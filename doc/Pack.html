@@ -26,6 +26,7 @@
 <li><code>Bool</code></li>
 <li><code>Int</code></li>
 <li><code>Str</code></li>
+<li><code>Buf</code></li>
 </ul>
 <p>Additionally Pack map values can be <code>Obj[]</code> lists and <code>Str:Obj</code> maps of the above primitives.</p>
 <pre><code>// encode
@@ -34,6 +35,10 @@ buf := Pack.encode(map)
 
 // decode
 map := Pack.decode(buf)
+
+// byte array
+bytes := Buf().write(0x01).write(0x02).write(0x03)
+map := [&quot;data&quot;:bytes]
 
 // list and maps
 map := [
@@ -46,8 +51,9 @@ map := [
 <li><code>bool</code></li>
 <li><code>int64_t</code></li>
 <li><code>char *</code></li>
+<li><code>uint8_t *</code></li>
 </ul>
-<p>Note all integers are 64-bit signed longs for consistency with how integers are modeled in Fantom.</p>
+<p>Note that the integer val type is a 64-bit signed long for consistency with how integers are modeled in Fantom.</p>
 <pre><code> // allocate
  struct pack_map *map = pack_map_new();
  pack_map_free(map);
@@ -70,13 +76,41 @@ map := [
  // decode
  struct pack_map *map = pack_decode(buf);
 
+ // byte array
+ uint8_t bytes[] = { 0x01, 0x02, 0x03 };
+ pack_setd(map, &quot;data&quot;, bytes, 3);
+ utin8_t *x = pack_getd(map, &quot;data&quot;)
+
  // maps
  struct pack_map *a = pack_map_new();
  pack_setb(a, &quot;foo&quot;, true);
  pack_sets(a, &quot;bar&quot;, &quot;cool beans&quot;);
-
  pack_setm(map, &quot;a&quot;, a);
- sub = pack_getm(map, &quot;a&quot;);</code></pre>
+ struct pack_map *x = pack_getm(map, &quot;a&quot;);</code></pre>
+<h3 id="c-io">C I/O</h3>
+<p>Encoded Pack messages can be exchanged using <code>pack_read</code> and <code>pack_write</code>. The <code>pack_read_fully</code> method is provided as a convenience if you wish to block until the entire message can be read.</p>
+<pre><code>// write
+FILE *f = fopen(&quot;foo.pack&quot;, &quot;w&quot;);
+pack_write(f, map);
+fclose(f);
+
+// read
+struct pack_buf *buf = pack_buf_new();
+FILE *f = fopen(&quot;foo.pack&quot;, &quot;r&quot;);
+if (pack_read_fully(f, buf) != 0) { /* read failed */ }
+fclose(f);
+struct pack_map *map = pack_decode(buf-&gt;bytes);</code></pre>
+<p>Reads are read into a holding buffer using <code>struct pack_buf</code>. Once the complete message has been read, the <code>ready</code> field will be set to <code>true</code>. If you wish to reuse a buffer instance for multiple reads, you must call <code>pack_buf_clear</code> to reset its state after each completed read:</p>
+<pre><code>struct pack_buf *buf = pack_buf_new();
+for (;;)
+{
+  if (pack_read(f, buf) != 0) { /* read failed */ }
+  if (buf-&gt;ready)
+  {
+    struct pack_map *map = pack_decode(buf-&gt;bytes);
+    pack_buf_clear(buf);
+  }
+}</code></pre>
 <h2 id="spec">Spec</h2>
 <p>TODO</p>
 <aside>
@@ -94,6 +128,7 @@ map := [
 <li class='h1'><a href='#pack'>Pack</a></li>
 <li class='h2'><a href='#fantom-usage'>Fantom Usage</a></li>
 <li class='h2'><a href='#c-usage'>C Usage</a></li>
+<li class='h3'><a href='#c-io'>C Io</a></li>
 <li class='h2'><a href='#spec'>Spec</a></li>
 </ul><h3>System</h3><ul>
 <li class='h1'><a href='Systems.html'>Systems</a></li>
