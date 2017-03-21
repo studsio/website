@@ -59,14 +59,14 @@ map := [
  pack_map_free(map);
 
  // setters
- pack_setb(map, &quot;a&quot;, true);
- pack_seti(map, &quot;b&quot;, 12);
- pack_sets(map, &quot;c&quot;, &quot;foo&quot;);
+ pack_set_bool(map, &quot;a&quot;, true);
+ pack_set_int(map, &quot;b&quot;, 12);
+ pack_set_str(map, &quot;c&quot;, &quot;foo&quot;);
 
  // getters
- bool b = pack_getb(map, &quot;a&quot;);
- int64_t i = pack_geti(map, &quot;b&quot;);
- char *s = pack_gets(map, &quot;c&quot;);
+ bool b = pack_get_bool(map, &quot;a&quot;);
+ int64_t i = pack_get_int(map, &quot;b&quot;);
+ char *s = pack_get_str(map, &quot;c&quot;);
 
  if (pack_has(&quot;foo&quot;)) { ... }
 
@@ -78,15 +78,15 @@ map := [
 
  // byte array
  uint8_t bytes[] = { 0x01, 0x02, 0x03 };
- pack_setd(map, &quot;data&quot;, bytes, 3);
- utin8_t *x = pack_getd(map, &quot;data&quot;)
+ pack_set_buf(map, &quot;data&quot;, bytes, 3);
+ utin8_t *x = pack_get_buf(map, &quot;data&quot;)
 
  // maps
  struct pack_map *a = pack_map_new();
- pack_setb(a, &quot;foo&quot;, true);
- pack_sets(a, &quot;bar&quot;, &quot;cool beans&quot;);
- pack_setm(map, &quot;a&quot;, a);
- struct pack_map *x = pack_getm(map, &quot;a&quot;);</code></pre>
+ pack_set_bool(a, &quot;foo&quot;, true);
+ pack_set_str(a, &quot;bar&quot;, &quot;cool beans&quot;);
+ pack_set_map(map, &quot;a&quot;, a);
+ struct pack_map *x = pack_get_map(map, &quot;a&quot;);</code></pre>
 <h3 id="c-io">C I/O</h3>
 <p>Encoded Pack messages can be exchanged using <code>pack_read</code> and <code>pack_write</code>. The <code>pack_read_fully</code> method is provided as a convenience if you wish to block until the entire message can be read.</p>
 <pre><code>// write
@@ -114,23 +114,34 @@ for (;;)
 <h2 id="spec">Spec</h2>
 <p>TODO</p>
 <aside>
-<h3>Overview</h3>
+</ul><h3>Overview</h3>
 <ul>
 <li class='h1'><a href='AboutStuds.html'>About Studs</a></li>
 <li class='h1'><a href='GettingStarted.html'>Getting Started</a></li>
+</ul>
+</ul><h3>Basics</h3>
+<ul>
 <li class='h1'><a href='Building.html'>Building</a></li>
 <li class='h1'><a href='Daemons.html'>Daemons</a></li>
 <li class='h1'><a href='faninit.html'>Faninit</a></li>
-<li class='h1'><a href='Leds.html'>Leds</a></li>
-<li class='h1'><a href='Networking.html'>Networking</a></li>
-<li class='h1'><a href='NTP.html'>NTP</a></li>
-<li class='h1'><a href='Uart.html'>Uart</a></li>
 <li class='h1'><a href='#pack'>Pack</a></li>
 <li class='h2'><a href='#fantom-usage'>Fantom Usage</a></li>
 <li class='h2'><a href='#c-usage'>C Usage</a></li>
-<li class='h3'><a href='#c-io'>C Io</a></li>
+<li class='h3'><a href='#c-io'>C I/O</a></li>
 <li class='h2'><a href='#spec'>Spec</a></li>
-</ul><h3>System</h3><ul>
+</ul>
+</ul><h3>Network</h3>
+<ul>
+<li class='h1'><a href='Networking.html'>Networking</a></li>
+<li class='h1'><a href='NTP.html'>NTP</a></li>
+</ul>
+</ul><h3>I/O</h3>
+<ul>
+<li class='h1'><a href='Leds.html'>Leds</a></li>
+<li class='h1'><a href='Uart.html'>Uart</a></li>
+</ul>
+</ul><h3>System</h3>
+<ul>
 <li class='h1'><a href='Systems.html'>Systems</a></li>
 </ul>
 </aside>

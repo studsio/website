@@ -23,8 +23,16 @@ class BuildDocs
 
   Void bash(Str cmd) { Process(["bash", "-c", cmd]).run.join }
 
-  ** Doc chapter order
-  File[] chapters := [,]
+  ** Table of contents.
+  Str:Str[] toc := [:]
+  {
+    it.ordered = true
+    it.set("Overview", ["AboutStuds", "GettingStarted"])
+    it.set("Basics",   ["Building", "Daemons", "faninit", "Pack"])
+    it.set("Network",  ["Networking", "NTP"])
+    it.set("I/O",      ["Leds", "Uart"])
+    it.set("System",   ["Systems"])
+  }
 
   Int main()
   {
@@ -41,26 +49,37 @@ class BuildDocs
         if (f.ext == "svg") f.copyTo(outDir + `$f.name`, ["overwrite":true])
       }
 
-      // read and order chapters
-      chapters = srcDir.listFiles.findAll |f| { f.ext=="md" }.rw
-      chapters.moveTo(chapters.find |f| { f.basename=="BuildingFw"     }, 0)
-      chapters.moveTo(chapters.find |f| { f.basename=="GettingStarted" }, 0)
-      chapters.moveTo(chapters.find |f| { f.basename=="AboutStuds"     }, 0)
-      chapters.moveTo(chapters.find |f| { f.basename=="Pack"           }, -1)
-      chapters.moveTo(chapters.find |f| { f.basename=="Systems"        }, -1)
+      done := File[,]
 
-      // convert chapters
-      chapters.each |f|
+      // render chapters
+      toc.each |chapters|
       {
-        echo(" $f.name")
-        out := outDir + `${f.basename}.html`
-        printHeader(out)
-        bash("pandoc -S -f markdown $f.osPath >> $out.osPath")
-        printTOC(out)
-        printFooter(out)
+        chapters.each |ch|
+        {
+          f := srcDir + `${ch}.md`
+          done.add(f)
+
+          echo(" $f.name")
+          out := outDir + `${f.basename}.html`
+          printHeader(out)
+          bash("pandoc -S -f markdown $f.osPath >> $out.osPath")
+          printToc(out)
+          printFooter(out)
+        }
       }
 
-      return 0
+      // sanity check
+      md := srcDir.listFiles.findAll |f| { f.ext=="md" }
+      if (md.size != done.size)
+      {
+        echo("**\n** FAILED: source != toc\n**")
+        return 1
+      }
+      else
+      {
+        echo("SUCCESS!")
+        return 0
+      }
     }
     catch (Err err)
     {
@@ -95,8 +114,10 @@ class BuildDocs
         """).flush.close
   }
 
-  Void printTOC(File f)
+  Void printToc(File f)
   {
+    chapter := f.basename
+
     map := Str:Str[:] { ordered=true }
     f.in.readAllLines.each |s|
     {
@@ -111,32 +132,30 @@ class BuildDocs
 
     out := f.out(true)
     out.printLine("<aside>")
-    out.printLine("<h3>Overview</h3>")
-    out.printLine("<ul>")
 
-    chapters.each |ch|
+    toc.each |chapters, section|
     {
-      switch (ch.basename)
+      out.printLine("</ul><h3>$section</h3>")
+      out.printLine("<ul>")
+      chapters.each |ch|
       {
-         case "BuildingFw": out.printLine("</ul><h3>Application</h3><ul>")
-         case "Systems":    out.printLine("</ul><h3>System</h3><ul>")
-      }
-
-      if (ch.basename == f.basename)
-      {
-        map.each |v,k|
+        if (ch == f.basename)
         {
-          dis := toDis(k)
-          out.printLine("<li class='$v'><a href='#$k'>$dis</a></li>")
+          map.each |v,k|
+          {
+            dis := toDis(k)
+            out.printLine("<li class='$v'><a href='#$k'>$dis</a></li>")
+          }
+        }
+        else
+        {
+          dis := ch.toDisplayName
+          out.printLine("<li class='h1'><a href='${ch}.html'>$dis</a></li>")
         }
       }
-      else
-      {
-        dis := ch.basename.toDisplayName
-        out.printLine("<li class='h1'><a href='${ch.basename}.html'>$dis</a></li>")
-      }
+      out.printLine("</ul>")
     }
-    out.printLine("</ul>")
+
     out.printLine("</aside>")
     out.flush.close
   }
@@ -156,9 +175,12 @@ class BuildDocs
   {
     name.lower.split(sep).map |s|
     {
-      if (s == "a")    return "a"
-      if (s == "your") return "your"
-      if (s == "jre")  return "JRE"
+      if (s == "a")     return "a"
+      if (s == "your")  return "your"
+      if (s == "jre")   return "JRE"
+      if (s == "io")    return "I/O"
+      if (s == "ip")    return "IP"
+      if (s == "macos") return "MacOS"
       return s.capitalize
     }.join(" ")
   }

@@ -36,15 +36,19 @@ aside {
   border-right: 1px solid #eee;
 }
 
+aside h3 {
+  margin: 1em 0 0.25em 0;
+}
+
 aside ul {
   padding: 0;
   margin: 0 0 0 1em;
 }
 
-aside ul li { padding: 0.25em 0; }
-aside ul li.h1 { list-style: none; font-weight: bold; }
-aside ul li.h2 { margin-left: 1.5em; }
-aside ul li.h3 { margin-left: 3em; }
+aside ul li { padding: 0.15em 0; }
+aside ul li.h1 { margin-left: 1em; font-weight: bold; }
+aside ul li.h2 { list-style: circle; padding: 0; margin-left: 2.5em; font-size: 80%; }
+aside ul li.h3 { list-style: circle; padding: 0; margin-left: 4em;   font-size: 80%; }
 
 h1, h2 {
   margin: 1.5em 0 1em 0;
