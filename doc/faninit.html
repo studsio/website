@@ -9,20 +9,21 @@
   -->
   <link href='https://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:700,400' rel='stylesheet' type='text/css'>
-  <link rel='stylesheet' type='text/css' href='doc.css' />
+  <link rel='stylesheet' type='text/css' href='../doc.css' />
 </head>
 <body>
 <header>
   <a href='../index.html'>Home</a>
-  <a href='AboutStuds.html'>Documentation</a>
+  <a href='../doc/AboutStuds.html'>Documentation</a>
+  <a href='../tut/Tutorials.html'>Tutorials</a>
   <a href='https://bitbucket.org/studs/core'>BitBucket</a>
 </header>
 <div class='main'>
-<h1 id="faninit"><strong>faninit</strong></h1>
+<h1 id="faninit">faninit</h1>
 <p>This is a replacement for <code>/sbin/init</code> that launches directly into the Fantom runtime on start-up. It is intentionally minimalist as it expects Fantom to be in charge of application initialization and supervision.</p>
 <p>Based on <strong>erlinit</strong> by Frank Hunleth:</p>
 <p><a href="https://github.com/nerves-project/erlinit" class="uri">https://github.com/nerves-project/erlinit</a></p>
-<h2 id="configuration"><strong>Configuration</strong></h2>
+<h2 id="configuration">Configuration</h2>
 <p><code>faninit</code> reads configuration from <code>/etc/faninit.props</code>. The available options are:</p>
 <pre><code># Fantom entry point which is invoked when faninit boots
 # The acceptable options are the same as &#39;fan&#39;:

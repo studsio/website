@@ -31,7 +31,8 @@ a { font-weight: bold; color: #2c3e50; }
   background: #f7f7f9;
   padding: 2em 0;
   position: relative;
-  height:460px;
+  height: 460px;
+  overflow: hidden;
 }
 #overview ul {
   position: absolute;
@@ -54,6 +55,15 @@ a { font-weight: bold; color: #2c3e50; }
   text-decoration: none
 }
 #overview ul li a:hover { background: #3498db; }
+#overview ul + p {
+  position: absolute;
+  margin: 2em;
+  padding: 0;
+  top: 24em;
+  width: 480px;
+  right: 46%;
+}
+#overview ul + p a { margin-right: 1em; }
 #overview div.term {
   position: absolute;
   top: 2em;

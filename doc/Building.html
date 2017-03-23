@@ -9,21 +9,22 @@
   -->
   <link href='https://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:700,400' rel='stylesheet' type='text/css'>
-  <link rel='stylesheet' type='text/css' href='doc.css' />
+  <link rel='stylesheet' type='text/css' href='../doc.css' />
 </head>
 <body>
 <header>
   <a href='../index.html'>Home</a>
-  <a href='AboutStuds.html'>Documentation</a>
+  <a href='../doc/AboutStuds.html'>Documentation</a>
+  <a href='../tut/Tutorials.html'>Tutorials</a>
   <a href='https://bitbucket.org/studs/core'>BitBucket</a>
 </header>
 <div class='main'>
-<h1 id="building"><strong>Building</strong></h1>
+<h1 id="building">Building</h1>
 <p>TODO: <code>fan studs asm</code> detailed docs</p>
-<h2 id="targets"><strong>Targets</strong></h2>
+<h2 id="targets">Targets</h2>
 <p>By default asm will assemble all targets defined in <code>studs.props</code>. To assemble only a specific target(s) you can pass them on the command line:</p>
 <pre><code>fan studs asm rpi3</code></pre>
-<h2 id="rootfs-additions"><strong>Rootfs Additions</strong></h2>
+<h2 id="rootfs-additions">Rootfs Additions</h2>
 <p>To add additional files into the root filesystem, create a folder named <code>rootfs-additions</code> under the <code>src</code> directory, with a subdirectory for each system target:</p>
 <pre><code>myproj/
  └─ src/
@@ -31,7 +32,7 @@
          ├─ bbb/
          └─ rpi3/</code></pre>
 <p>Any files under the <code>rootfs-additions/xxx/</code> will be directly added to the default root filesystem for the respective system. If a file in <code>rootfs-additions</code> already exists in the base image, it will replace the base copy.</p>
-<h2 id="profile-configuration"><strong>Profile Configuration</strong></h2>
+<h2 id="profile-configuration">Profile Configuration</h2>
 <p>If you build lots of projects, some configuration may become repetitive – particularly finding and copying the source JRE tarball into your project.</p>
 <p>To help streamline this process, you can create a <code>.studs</code> profile file in your home directory (<code>~/.studs</code>) to store project-wide configuration:</p>
 <pre><code># By default, studs will look for the source JRE tarball under the

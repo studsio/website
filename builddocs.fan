@@ -18,8 +18,10 @@ class BuildDocs
 {
   const File scriptFile := File(typeof->sourceFile.toStr.toUri).normalize
   const File scriptDir  := scriptFile.parent
-  const File srcDir     := (scriptDir + `../core/doc/`).normalize
-  const File outDir     := (scriptDir + `doc/`).normalize
+  const File docSrcDir  := (scriptDir + `../core/doc/`).normalize
+  const File docOutDir  := (scriptDir + `doc/`).normalize
+  const File tutSrcDir  := (scriptDir + `../core/docTut/`).normalize
+  const File tutOutDir  := (scriptDir + `tut/`).normalize
 
   Void bash(Str cmd) { Process(["bash", "-c", cmd]).run.join }
 
@@ -34,52 +36,19 @@ class BuildDocs
     it.set("System",   ["Systems"])
   }
 
+  ** Tutorials
+  Str[] tuts :=
+  [
+    "Tutorials",
+  ]
+
   Int main()
   {
     try
     {
-      echo("BuildDocs [$srcDir.osPath]")
-
-      // cleanup old docs
-      bash("rm $outDir.osPath/*.html")
-
-      // copy artwork
-      srcDir.listFiles.each |f|
-      {
-        if (f.ext == "svg") f.copyTo(outDir + `$f.name`, ["overwrite":true])
-      }
-
-      done := File[,]
-
-      // render chapters
-      toc.each |chapters|
-      {
-        chapters.each |ch|
-        {
-          f := srcDir + `${ch}.md`
-          done.add(f)
-
-          echo(" $f.name")
-          out := outDir + `${f.basename}.html`
-          printHeader(out)
-          bash("pandoc -S -f markdown $f.osPath >> $out.osPath")
-          printToc(out)
-          printFooter(out)
-        }
-      }
-
-      // sanity check
-      md := srcDir.listFiles.findAll |f| { f.ext=="md" }
-      if (md.size != done.size)
-      {
-        echo("**\n** FAILED: source != toc\n**")
-        return 1
-      }
-      else
-      {
-        echo("SUCCESS!")
-        return 0
-      }
+      buildDocs
+      buildTuts
+      return 0
     }
     catch (Err err)
     {
@@ -88,30 +57,50 @@ class BuildDocs
     }
   }
 
-  Void printHeader(File f)
+//////////////////////////////////////////////////////////////////////////
+// Docs
+//////////////////////////////////////////////////////////////////////////
+
+  Void buildDocs()
   {
-    f.out.print(
-     """<!DOCTYPE html>
-        <html xmlns='http://www.w3.org/1999/xhtml'>
-        <head>
-          <title>$f.basename &ndash; Studs</title>
-          <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-          <!--
-          <meta name='viewport' content='initial-scale=1.0' />
-          <meta name='description' content='' />
-          -->
-          <link href='https://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
-          <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:700,400' rel='stylesheet' type='text/css'>
-          <link rel='stylesheet' type='text/css' href='doc.css' />
-        </head>
-        <body>
-        <header>
-          <a href='../index.html'>Home</a>
-          <a href='AboutStuds.html'>Documentation</a>
-          <a href='https://bitbucket.org/studs/core'>BitBucket</a>
-        </header>
-        <div class='main'>
-        """).flush.close
+    echo("BuildDocs [$docSrcDir.osPath]")
+
+    // cleanup old docs
+    bash("rm $docOutDir.osPath/*.html")
+    bash("rm $docOutDir.osPath/*.svg")
+
+    // copy artwork
+    docSrcDir.listFiles.each |f|
+    {
+      if (f.ext == "svg") f.copyTo(docOutDir + `$f.name`, ["overwrite":true])
+    }
+
+    done := File[,]
+
+    // render chapters
+    toc.each |chapters|
+    {
+      chapters.each |ch|
+      {
+        f := docSrcDir + `${ch}.md`
+        done.add(f)
+
+        echo(" $f.name")
+        out := docOutDir + `${f.basename}.html`
+        printHeader(out)
+        bash("pandoc -S -f markdown $f.osPath >> $out.osPath")
+        printToc(out)
+        printFooter(out)
+      }
+    }
+
+    // sanity check
+    md := docSrcDir.listFiles.findAll |f| { f.ext=="md" }
+    if (md.size != done.size)
+    {
+      echo("**\n** FAILED: source != toc\n**")
+      Env.cur.exit(1)
+    }
   }
 
   Void printToc(File f)
@@ -158,6 +147,91 @@ class BuildDocs
 
     out.printLine("</aside>")
     out.flush.close
+  }
+
+//////////////////////////////////////////////////////////////////////////
+// Tutorials
+//////////////////////////////////////////////////////////////////////////
+
+  Void buildTuts()
+  {
+    echo("BuildTuts [$tutSrcDir.osPath]")
+
+    // cleanup old docs
+    bash("rm $tutOutDir.osPath/*.html")
+    // bash("rm $tutOutDir.osPath/*.svg")
+
+    // copy artwork
+    tutSrcDir.listFiles.each |f|
+    {
+      if (f.ext == "svg") f.copyTo(tutOutDir + `$f.name`, ["overwrite":true])
+    }
+
+    done := File[,]
+
+    // render chapters
+    tuts.each |tut|
+    {
+      f := tutSrcDir + `${tut}.md`
+      done.add(f)
+
+      echo(" $f.name")
+      out := tutOutDir + `${f.basename}.html`
+      printHeader(out)
+      bash("pandoc -S -f markdown $f.osPath >> $out.osPath")
+      printTuts(out)
+      printFooter(out)
+    }
+
+    // sanity check
+    md := tutSrcDir.listFiles.findAll |f| { f.ext=="md" }
+    if (md.size != done.size)
+    {
+      echo("**\n** FAILED: source != tut\n**")
+      Env.cur.exit(1)
+    }
+  }
+
+  Void printTuts(File f)
+  {
+    out := f.out(true)
+    out.printLine("<aside>")
+
+    out.printLine("<p>Coming soon!</p>")
+
+    out.printLine("</aside>")
+    out.flush.close
+  }
+
+//////////////////////////////////////////////////////////////////////////
+// Theme
+//////////////////////////////////////////////////////////////////////////
+
+  Void printHeader(File f)
+  {
+    f.out.print(
+     """<!DOCTYPE html>
+        <html xmlns='http://www.w3.org/1999/xhtml'>
+        <head>
+          <title>$f.basename &ndash; Studs</title>
+          <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+          <!--
+          <meta name='viewport' content='initial-scale=1.0' />
+          <meta name='description' content='' />
+          -->
+          <link href='https://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
+          <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:700,400' rel='stylesheet' type='text/css'>
+          <link rel='stylesheet' type='text/css' href='../doc.css' />
+        </head>
+        <body>
+        <header>
+          <a href='../index.html'>Home</a>
+          <a href='../doc/AboutStuds.html'>Documentation</a>
+          <a href='../tut/Tutorials.html'>Tutorials</a>
+          <a href='https://bitbucket.org/studs/core'>BitBucket</a>
+        </header>
+        <div class='main'>
+        """).flush.close
   }
 
   Void printFooter(File f)
