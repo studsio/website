@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <title>UartGps &ndash; Studs</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+  <!--
+  <meta name='viewport' content='initial-scale=1.0' />
+  <meta name='description' content='' />
+  -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:700,400' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' type='text/css' href='../doc.css' />
+</head>
+<body>
+<header>
+  <a href='../index.html'>Home</a>
+  <a href='../doc/AboutStuds.html'>Documentation</a>
+  <a href='../tut/Tutorials.html'>Tutorials</a>
+  <a href='https://bitbucket.org/studs/core'>BitBucket</a>
+</header>
+<div class='main'>
+<h1 id="using-uart-to-read-gps-module">Using UART to read GPS module</h1>
+<p>In this tutorial we’ll cover how to wire up your BeagleBone Black to Adafruit’s Ultimate GPS Breakout (MTK3339) and read GPS locations over the UART serial interface.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li><a href="../doc/GettingStarted.html">Setup Studs</a></li>
+<li>BeagleBone Black</li>
+<li>Adafruit Ultimate GPS Breakout – $40 from <a href="https://www.adafruit.com/product/746">Adafruit</a></li>
+</ul>
+<h2 id="wiring">Wiring</h2>
+<p>TODO</p>
+<h2 id="coding">Coding</h2>
+<p>First create a new project:</p>
+<pre><code>$ fan studs init uartgps</code></pre>
+<p>Next edit your <code>src/fan/Main.fan</code> to look like:</p>
+<pre><code>using studs
+using concurrent
+
+const class Main
+{
+  static Int main()
+  {
+    // enable UART1
+    DeviceTree.enable(&quot;BB-UART1&quot;)
+
+    // open uart and read forever
+    uart := Uart().open(&quot;ttyS1&quot;, UartConfig {})
+    while (true)
+    {
+      try
+      {
+        line := uart.in.readLine
+        echo(&quot;# $line&quot;)
+      }
+      catch (Err err) { err.trace }
+    }
+
+    // never get here; but close and return
+    uart.close
+    return 0
+  }
+}</code></pre>
+<h3 id="enable-uart1">Enable UART1</h3>
+<p>UART1 is disabled by default on the BBB, so the first thing we need todo is enable it using a device tree overlay, which is done with the following code:</p>
+<pre><code>// enable UART1
+DeviceTree.enable(&quot;BB-UART1&quot;)</code></pre>
+<p>The <code>ttyS1</code> serial port will now be available for use.</p>
+<h3 id="open-port">Open port</h3>
+<p>Next we need to open the UART with the appropriate configuration options. The GPS module happens to use the default config (<code>9600-8n1</code>) so we can pass in the defaults:</p>
+<pre><code>uart := Uart().open(&quot;ttyS1&quot;, UartConfig {})</code></pre>
+<h3 id="read-port">Read port</h3>
+<p>In our example code, we will loop forever dumping what we read from the GPS module to stdout:</p>
+<pre><code>line := uart.in.readLine
+echo(&quot;# $line&quot;)</code></pre>
+<p>The <code>uart.in.readLine</code> will block until data is available and read up to the next <code>CRLF</code> terminator.</p>
+<h2 id="running">Running</h2>
+<p>To build and run your project:</p>
+<pre><code>$ src/build.fan
+$ fan studs asm
+$ fan studs burn</code></pre>
+<p>Insert your SD card and power up your BBB. If you have the <a href="Console.html">serial console</a> connected to your PC you should start seeing the stdout from our application.</p>
+<aside>
+<ul class='tut'>
+<li><a href='Tutorials.html'>Tutorials</a></li>
+<li><a href='Console.html'> Connecting PC to BBB serial console</a></li>
+<li><a href='UartGps.html'> Using UART to read GPS module</a></li>
+</ul>
+</aside>
+</div>
+<footer>
+</footer>
+</body>
+</html>

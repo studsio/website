@@ -50,11 +50,16 @@ aside ul li.h1 { margin-left: 1em; font-weight: bold; }
 aside ul li.h2 { list-style: circle; padding: 0; margin-left: 2.5em; font-size: 80%; }
 aside ul li.h3 { list-style: circle; padding: 0; margin-left: 4em;   font-size: 80%; }
 
+aside ul.tut { list-style: none; margin: 0; }
+aside ul.tut li { padding: 0; margin: 1em 0; }
+
 h1, h2 {
   margin: 1.5em 0 1em 0;
   padding-bottom: 0.3em;
   border-bottom: 1px solid #eee;
 }
+
+h1 { line-height: 1em; }
 
 a { color: #2980b9; }
 

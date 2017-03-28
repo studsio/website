@@ -40,6 +40,8 @@ class BuildDocs
   Str[] tuts :=
   [
     "Tutorials",
+    "Console",
+    "UartGps",
   ]
 
   Int main()
@@ -197,7 +199,16 @@ class BuildDocs
     out := f.out(true)
     out.printLine("<aside>")
 
-    out.printLine("<p>Coming soon!</p>")
+    out.printLine("<ul class='tut'>")
+    out.printLine("<li><a href='Tutorials.html'>Tutorials</a></li>")
+    tuts.eachRange(1..-1) |tut|
+    {
+      x := (tutSrcDir + `${tut}.md`).in
+      h := x.readLine[1..-1]
+      x.close
+      out.printLine("<li><a href='${tut}.html'>$h.toXml</a></li>")
+    }
+    out.printLine("</ul>")
 
     out.printLine("</aside>")
     out.flush.close
