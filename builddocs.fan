@@ -179,7 +179,7 @@ class BuildDocs
 
       echo(" $f.name")
       out := tutOutDir + `${f.basename}.html`
-      printHeader(out)
+      printHeader(out, readTutTitle(f))
       bash("pandoc -S -f markdown $f.osPath >> $out.osPath")
       printTuts(out)
       printFooter(out)
@@ -203,9 +203,7 @@ class BuildDocs
     out.printLine("<li><a href='Tutorials.html'>Tutorials</a></li>")
     tuts.eachRange(1..-1) |tut|
     {
-      x := (tutSrcDir + `${tut}.md`).in
-      h := x.readLine[1..-1]
-      x.close
+      h := readTutTitle(tutSrcDir + `${tut}.md`)
       out.printLine("<li><a href='${tut}.html'>$h.toXml</a></li>")
     }
     out.printLine("</ul>")
@@ -214,17 +212,25 @@ class BuildDocs
     out.flush.close
   }
 
+  Str readTutTitle(File f)
+  {
+    in := f.in
+    title := in.readLine[1..-1]
+    in.close
+    return title
+  }
+
 //////////////////////////////////////////////////////////////////////////
 // Theme
 //////////////////////////////////////////////////////////////////////////
 
-  Void printHeader(File f)
+  Void printHeader(File f, Str? title := null)
   {
     f.out.print(
      """<!DOCTYPE html>
         <html xmlns='http://www.w3.org/1999/xhtml'>
         <head>
-          <title>$f.basename &ndash; Studs</title>
+          <title>${title ?: f.basename} &ndash; Studs</title>
           <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
           <!--
           <meta name='viewport' content='initial-scale=1.0' />
