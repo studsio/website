@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <title>UartConfig &ndash; Studs</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+  <!--
+  <meta name='viewport' content='initial-scale=1.0' />
+  <meta name='description' content='' />
+  -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:700,400' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' type='text/css' href='../../doc.css' />
+</head>
+<body>
+<header>
+  <a href='../../index.html'>Home</a>
+  <a href='../../doc/AboutStuds.html'>Documentation</a>
+  <a href='../../tut/Tutorials.html'>Tutorials</a>
+  <a href='../../api/studs/index.html'>API</a>
+  <a href='https://bitbucket.org/studs/core'>BitBucket</a>
+</header>
+<div class='main'>
+<p class='api-index'><a href='index.html'>All Types</a></p><div class='mainSidebar'>
+<div class='main type'>
+<h1><span>const class</span> studs::UartConfig</h1>
+<pre><a href='http://fantom.org/doc/sys/Obj.html'>sys::Obj</a>
+  studs::UartConfig</pre>
+
+<p>UartConfig models configuration for a <code><a href='Uart.html'>Uart</a></code> port.</p>
+<dl>
+<dt id='data'>
+data</dt>
+<dd>
+<p class='sig'>
+<code>const <a href='http://fantom.org/doc/sys/Int.html'>Int</a> data := 8</code></p>
+
+<p>Number of data bits to use (5..8)</p>
+</dd>
+<dt id='flow'>
+flow</dt>
+<dd>
+<p class='sig'>
+<code>const <a href='http://fantom.org/doc/sys/Str.html'>Str</a> flow := &quot;none&quot;</code></p>
+
+<p>Flow control mode: <code>none</code>, <code>hw</code>, or <code>sw</code></p>
+</dd>
+<dt id='make'>
+make</dt>
+<dd>
+<p class='sig'>
+<code>new make(|<a href='http://fantom.org/doc/sys/This.html'>This</a>| f)</code></p>
+
+<p>It-block constructor.</p>
+</dd>
+<dt id='parity'>
+parity</dt>
+<dd>
+<p class='sig'>
+<code>const <a href='http://fantom.org/doc/sys/Str.html'>Str</a> parity := &quot;none&quot;</code></p>
+
+<p>Parity mode: <code>none</code>, <code>even</code>, <code>odd</code></p>
+</dd>
+<dt id='speed'>
+speed</dt>
+<dd>
+<p class='sig'>
+<code>const <a href='http://fantom.org/doc/sys/Int.html'>Int</a> speed := 9600</code></p>
+
+<p>Baud rate (ex: 9600, 38400, 115200)</p>
+</dd>
+<dt id='stop'>
+stop</dt>
+<dd>
+<p class='sig'>
+<code>const <a href='http://fantom.org/doc/sys/Int.html'>Int</a> stop := 1</code></p>
+
+<p>Number of stop bits to use (1.2)</p>
+</dd>
+</dl>
+</div>
+<div class='sidebar'>
+<h3>Source</h3>
+<ul>
+<li>Not available</li></ul>
+<h3>Slots</h3>
+<ul>
+<li><a href='#data'>data</a></li><li><a href='#flow'>flow</a></li><li><a href='#make'>make</a></li><li><a href='#parity'>parity</a></li><li><a href='#speed'>speed</a></li><li><a href='#stop'>stop</a></li></ul>
+</div>
+</div>
+
+</div>
+<footer>
+</footer>
+</body>
+</html>

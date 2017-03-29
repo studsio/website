@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <title>Pack &ndash; Studs</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+  <!--
+  <meta name='viewport' content='initial-scale=1.0' />
+  <meta name='description' content='' />
+  -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:700,400' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' type='text/css' href='../../doc.css' />
+</head>
+<body>
+<header>
+  <a href='../../index.html'>Home</a>
+  <a href='../../doc/AboutStuds.html'>Documentation</a>
+  <a href='../../tut/Tutorials.html'>Tutorials</a>
+  <a href='../../api/studs/index.html'>API</a>
+  <a href='https://bitbucket.org/studs/core'>BitBucket</a>
+</header>
+<div class='main'>
+<p class='api-index'><a href='index.html'>All Types</a></p><div class='mainSidebar'>
+<div class='main type'>
+<h1><span>class</span> studs::Pack</h1>
+<pre><a href='http://fantom.org/doc/sys/Obj.html'>sys::Obj</a>
+  studs::Pack</pre>
+
+<p>Pack is a binary encoding for name-value pairs.</p>
+<dl>
+<dt id='decode'>
+decode</dt>
+<dd>
+<p class='sig'>
+<code>const static <a href='http://fantom.org/doc/sys/Str.html'>Str</a>:<a href='http://fantom.org/doc/sys/Obj.html'>Obj</a> decode(<a href='http://fantom.org/doc/sys/Buf.html'>Buf</a> buf)</code></p>
+
+<p>Decode Pack byte buffer into map instance.</p>
+</dd>
+<dt id='encode'>
+encode</dt>
+<dd>
+<p class='sig'>
+<code>const static <a href='http://fantom.org/doc/sys/Buf.html'>Buf</a> encode(<a href='http://fantom.org/doc/sys/Str.html'>Str</a>:<a href='http://fantom.org/doc/sys/Obj.html'>Obj</a> map)</code></p>
+
+<p>Enode map into a Pack byte buffer.</p>
+</dd>
+<dt id='read'>
+read</dt>
+<dd>
+<p class='sig'>
+<code>const static <a href='http://fantom.org/doc/sys/Str.html'>Str</a>:<a href='http://fantom.org/doc/sys/Obj.html'>Obj</a> read(<a href='http://fantom.org/doc/sys/InStream.html'>InStream</a> in)</code></p>
+
+<p>Read a Pack packet from the given <code>InStream</code> and return the decoded name/value pair map.  Throws IOErr if stream or encoding error occurs.</p>
+</dd>
+<dt id='write'>
+write</dt>
+<dd>
+<p class='sig'>
+<code>const static <a href='http://fantom.org/doc/sys/Void.html'>Void</a> write(<a href='http://fantom.org/doc/sys/OutStream.html'>OutStream</a> out, <a href='http://fantom.org/doc/sys/Str.html'>Str</a>:<a href='http://fantom.org/doc/sys/Obj.html'>Obj</a> map)</code></p>
+
+<p>Write a Pack packet to given <code>OutStream</code>. Throws <code>IOErr</code> if write failed.  This method invokes <code>out.flush</code> after writing packet content.</p>
+</dd>
+</dl>
+</div>
+<div class='sidebar'>
+<h3>Source</h3>
+<ul>
+<li>Not available</li></ul>
+<h3>Slots</h3>
+<ul>
+<li><a href='#decode'>decode</a></li><li><a href='#encode'>encode</a></li><li><a href='#read'>read</a></li><li><a href='#write'>write</a></li></ul>
+</div>
+</div>
+
+</div>
+<footer>
+</footer>
+</body>
+</html>

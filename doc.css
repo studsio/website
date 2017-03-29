@@ -89,3 +89,41 @@ div.figure p.caption { display: none; }
 footer {
   height: 2em;
 }
+
+div.mainSidebar div.main.type {
+  width: 100%;
+  padding-left: 0;
+  margin: 0;
+}
+div.main p.api-index {
+  position: absolute;
+  top: -1em;
+  left: 0;
+  width: 220px;
+}
+div.mainSidebar div.sidebar {
+  position: absolute;
+  top: 2em;
+  left: 0;
+  width: 220px;
+}
+div.mainSidebar div.sidebar h3:first-of-type { display: none; }
+div.mainSidebar div.sidebar ul:first-of-type { display: none; }
+div.mainSidebar div.main.type h1 span { display: block; font-size: 60%; font-weight: normal; }
+div.mainSidebar div.main.type dt {
+  border-top: 1px solid #eee;
+  background: #fbfbfb;
+  font-weight: bold;
+  padding: 4px;
+}
+div.mainSidebar div.main.type dd p.sig code {
+  background: none;
+  color: #27ae60;
+}
+div.mainSidebar table td p { margin: 4px 0; }
+div.mainSidebar.index div.main.type {
+  width: 960px;
+  padding: 0;
+  margin: 0 0 0 -260px;
+}
+div.mainSidebar.index div.sidebar { display: none; }

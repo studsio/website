@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <title>Uart &ndash; Studs</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+  <!--
+  <meta name='viewport' content='initial-scale=1.0' />
+  <meta name='description' content='' />
+  -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:700,400' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' type='text/css' href='../../doc.css' />
+</head>
+<body>
+<header>
+  <a href='../../index.html'>Home</a>
+  <a href='../../doc/AboutStuds.html'>Documentation</a>
+  <a href='../../tut/Tutorials.html'>Tutorials</a>
+  <a href='../../api/studs/index.html'>API</a>
+  <a href='https://bitbucket.org/studs/core'>BitBucket</a>
+</header>
+<div class='main'>
+<p class='api-index'><a href='index.html'>All Types</a></p><div class='mainSidebar'>
+<div class='main type'>
+<h1><span>class</span> studs::Uart</h1>
+<pre><a href='http://fantom.org/doc/sys/Obj.html'>sys::Obj</a>
+  studs::Uart</pre>
+
+<p>Uart models a UART port instance.</p>
+<dl>
+<dt id='close'>
+close</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/Void.html'>Void</a> close()</code></p>
+
+<p>Close this port.</p>
+</dd>
+<dt id='in'>
+in</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/InStream.html'>InStream</a> in()</code></p>
+
+<p>Get an <code><a href='http://fantom.org/doc/sys/InStream.html'>InStream</a></code> to read this port. Throws IOErr if port not open.</p>
+</dd>
+<dt id='list'>
+list</dt>
+<dd>
+<p class='sig'>
+<code>const static <a href='http://fantom.org/doc/sys/Str.html'>Str</a>:<a href='http://fantom.org/doc/sys/Obj.html'>Obj</a> list()</code></p>
+
+<p>List the available uart ports on this device.</p>
+</dd>
+<dt id='open'>
+open</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/This.html'>This</a> open(<a href='http://fantom.org/doc/sys/Str.html'>Str</a> name, <a href='UartConfig.html'>UartConfig</a> config)</code></p>
+
+<p>Open the serial port <code>name</code> with given config. Throws IOErr if port cannot be opened.</p>
+</dd>
+<dt id='out'>
+out</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/OutStream.html'>OutStream</a> out()</code></p>
+
+<p>Get an  <code><a href='http://fantom.org/doc/sys/OutStream.html'>OutStream</a></code> to write to this port. Throws IOErr if port not open.</p>
+</dd>
+<dt id='read'>
+read</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/Buf.html'>Buf?</a> read()</code></p>
+
+<p>TODO</p>
+</dd>
+<dt id='write'>
+write</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/Void.html'>Void</a> write(<a href='http://fantom.org/doc/sys/Buf.html'>Buf</a> buf)</code></p>
+
+<p>TODO</p>
+</dd>
+</dl>
+</div>
+<div class='sidebar'>
+<h3>Source</h3>
+<ul>
+<li>Not available</li></ul>
+<h3>Slots</h3>
+<ul>
+<li><a href='#close'>close</a></li><li><a href='#in'>in</a></li><li><a href='#list'>list</a></li><li><a href='#open'>open</a></li><li><a href='#out'>out</a></li><li><a href='#read'>read</a></li><li><a href='#write'>write</a></li></ul>
+</div>
+</div>
+
+</div>
+<footer>
+</footer>
+</body>
+</html>

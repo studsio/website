@@ -22,6 +22,7 @@ class BuildDocs
   const File docOutDir  := (scriptDir + `doc/`).normalize
   const File tutSrcDir  := (scriptDir + `../core/docTut/`).normalize
   const File tutOutDir  := (scriptDir + `tut/`).normalize
+  const File apiDir     := (scriptDir + `api/`).normalize
 
   Void bash(Str cmd) { Process(["bash", "-c", cmd]).run.join }
 
@@ -50,6 +51,7 @@ class BuildDocs
     {
       buildDocs
       buildTuts
+      buildApis
       return 0
     }
     catch (Err err)
@@ -221,11 +223,58 @@ class BuildDocs
   }
 
 //////////////////////////////////////////////////////////////////////////
+// APIs
+//////////////////////////////////////////////////////////////////////////
+
+  Void buildApis()
+  {
+    echo("BuildApis [$apiDir.osPath]")
+
+    // cleanup old docs
+    bash("rm $apiDir.osPath/studs/*.html")
+
+    // run compilerDoc
+    bash("cd $scriptDir.osPath/../core; fan compilerDoc studs -outDir $apiDir.osPath")
+
+    // rewrite api files
+    (apiDir + `studs/`).listFiles.each |f|
+    {
+      echo("  $f.name")
+
+      // strip compilerDoc headers
+      markup := f.readAllStr
+      s := markup.index("<div class='mainSidebar'>")
+      e := markup.index("</body>")
+      markup = markup[s..<e]
+
+      // fixup markup
+      if (f.name == "index.html")
+      {
+        markup = markup.replace("<div class='mainSidebar'>", "<div class='mainSidebar index'>")
+      }
+      else
+      {
+        markup = "<p class='api-index'><a href='index.html'>All Types</a></p>" + markup
+      }
+
+      // rewrite ext doc links
+      // TODO: check non-sys...
+      markup = markup.replace("<a href='../sys", "<a href='http://fantom.org/doc/sys")
+
+      // rewrite html
+      printHeader(f)
+      f.out(true).printLine(markup).flush.close
+      printFooter(f)
+    }
+  }
+
+//////////////////////////////////////////////////////////////////////////
 // Theme
 //////////////////////////////////////////////////////////////////////////
 
   Void printHeader(File f, Str? title := null)
   {
+    path := f.pathStr.contains("api/studs/") ? "../.." : ".."
     f.out.print(
      """<!DOCTYPE html>
         <html xmlns='http://www.w3.org/1999/xhtml'>
@@ -238,13 +287,14 @@ class BuildDocs
           -->
           <link href='https://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
           <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:700,400' rel='stylesheet' type='text/css'>
-          <link rel='stylesheet' type='text/css' href='../doc.css' />
+          <link rel='stylesheet' type='text/css' href='${path}/doc.css' />
         </head>
         <body>
         <header>
-          <a href='../index.html'>Home</a>
-          <a href='../doc/AboutStuds.html'>Documentation</a>
-          <a href='../tut/Tutorials.html'>Tutorials</a>
+          <a href='${path}/index.html'>Home</a>
+          <a href='${path}/doc/AboutStuds.html'>Documentation</a>
+          <a href='${path}/tut/Tutorials.html'>Tutorials</a>
+          <a href='${path}/api/studs/index.html'>API</a>
           <a href='https://bitbucket.org/studs/core'>BitBucket</a>
         </header>
         <div class='main'>

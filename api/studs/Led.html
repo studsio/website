@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <title>Led &ndash; Studs</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+  <!--
+  <meta name='viewport' content='initial-scale=1.0' />
+  <meta name='description' content='' />
+  -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:700,400' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' type='text/css' href='../../doc.css' />
+</head>
+<body>
+<header>
+  <a href='../../index.html'>Home</a>
+  <a href='../../doc/AboutStuds.html'>Documentation</a>
+  <a href='../../tut/Tutorials.html'>Tutorials</a>
+  <a href='../../api/studs/index.html'>API</a>
+  <a href='https://bitbucket.org/studs/core'>BitBucket</a>
+</header>
+<div class='main'>
+<p class='api-index'><a href='index.html'>All Types</a></p><div class='mainSidebar'>
+<div class='main type'>
+<h1><span>class</span> studs::Led</h1>
+<pre><a href='http://fantom.org/doc/sys/Obj.html'>sys::Obj</a>
+  studs::Led</pre>
+
+<p>Led manages LED state using <code>/sys/class/leds</code>.</p>
+<dl>
+<dt id='blink'>
+blink</dt>
+<dd>
+<p class='sig'>
+<code>const static <a href='http://fantom.org/doc/sys/Void.html'>Void</a> blink(<a href='http://fantom.org/doc/sys/Str.html'>Str</a> name, <a href='http://fantom.org/doc/sys/Duration.html'>Duration</a> onDur, <a href='http://fantom.org/doc/sys/Duration.html'>Duration</a> offDur)</code></p>
+
+<p>Blink the given led using the given on/off pattern.</p>
+</dd>
+<dt id='off'>
+off</dt>
+<dd>
+<p class='sig'>
+<code>const static <a href='http://fantom.org/doc/sys/Void.html'>Void</a> off(<a href='http://fantom.org/doc/sys/Str.html'>Str</a> name)</code></p>
+
+<p>Convenience for <code>set(name, false)</code>.</p>
+</dd>
+<dt id='on'>
+on</dt>
+<dd>
+<p class='sig'>
+<code>const static <a href='http://fantom.org/doc/sys/Void.html'>Void</a> on(<a href='http://fantom.org/doc/sys/Str.html'>Str</a> name)</code></p>
+
+<p>Convenience for <code>set(name, true)</code>.</p>
+</dd>
+<dt id='set'>
+set</dt>
+<dd>
+<p class='sig'>
+<code>const static <a href='http://fantom.org/doc/sys/Void.html'>Void</a> set(<a href='http://fantom.org/doc/sys/Str.html'>Str</a> name, <a href='http://fantom.org/doc/sys/Bool.html'>Bool</a> on)</code></p>
+
+<p>Set the on/off state for given led.</p>
+</dd>
+<dt id='trigger'>
+trigger</dt>
+<dd>
+<p class='sig'>
+<code>const static <a href='http://fantom.org/doc/sys/Void.html'>Void</a> trigger(<a href='http://fantom.org/doc/sys/Str.html'>Str</a> name, <a href='http://fantom.org/doc/sys/Str.html'>Str</a> val)</code></p>
+
+<p>Set led trigger to given value.</p>
+</dd>
+</dl>
+</div>
+<div class='sidebar'>
+<h3>Source</h3>
+<ul>
+<li>Not available</li></ul>
+<h3>Slots</h3>
+<ul>
+<li><a href='#blink'>blink</a></li><li><a href='#off'>off</a></li><li><a href='#on'>on</a></li><li><a href='#set'>set</a></li><li><a href='#trigger'>trigger</a></li></ul>
+</div>
+</div>
+
+</div>
+<footer>
+</footer>
+</body>
+</html>

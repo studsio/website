@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <title>Proc &ndash; Studs</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+  <!--
+  <meta name='viewport' content='initial-scale=1.0' />
+  <meta name='description' content='' />
+  -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:700,400' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' type='text/css' href='../../doc.css' />
+</head>
+<body>
+<header>
+  <a href='../../index.html'>Home</a>
+  <a href='../../doc/AboutStuds.html'>Documentation</a>
+  <a href='../../tut/Tutorials.html'>Tutorials</a>
+  <a href='../../api/studs/index.html'>API</a>
+  <a href='https://bitbucket.org/studs/core'>BitBucket</a>
+</header>
+<div class='main'>
+<p class='api-index'><a href='index.html'>All Types</a></p><div class='mainSidebar'>
+<div class='main type'>
+<h1><span>class</span> studs::Proc</h1>
+<pre><a href='http://fantom.org/doc/sys/Obj.html'>sys::Obj</a>
+  studs::Proc</pre>
+
+<p>Proc manages spawning an external OS process.  This class differs from sys::Process by optimizing the API for interaction with the child process over stdio.</p>
+<dl>
+<dt id='cmd'>
+cmd</dt>
+<dd>
+<p class='sig'>
+<code>const <a href='http://fantom.org/doc/sys/Str.html'>Str</a>[] cmd</code></p>
+
+<p>Command argument list used to launch process. The first item is the executable itself, then rest are the parameters.</p>
+</dd>
+<dt id='dir'>
+dir</dt>
+<dd>
+<p class='sig'>
+<code>const <a href='http://fantom.org/doc/sys/File.html'>File?</a> dir := null</code></p>
+
+<p>Working directory for child process.</p>
+</dd>
+<dt id='env'>
+env</dt>
+<dd>
+<p class='sig'>
+<code>const <a href='http://fantom.org/doc/sys/Str.html'>Str</a>:<a href='http://fantom.org/doc/sys/Str.html'>Str</a> env := [Str:Str][:]</code></p>
+
+<p>Environment variables to pass to child process. This map is initialized with the current process environment.</p>
+</dd>
+<dt id='err'>
+err</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/InStream.html'>InStream</a> err()</code></p>
+
+<p>Return InStream used to read process stderr.</p>
+</dd>
+<dt id='exitCode'>
+exitCode</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/Int.html'>Int?</a> exitCode()</code></p>
+
+<p>Return the exit code for child process, <code>null</code> if process has not started, or throws Err if process has not yet terminated.</p>
+</dd>
+<dt id='in'>
+in</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/InStream.html'>InStream</a> in()</code></p>
+
+<p>Return InStream used to read process stdout.</p>
+</dd>
+<dt id='isRunning'>
+isRunning</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/Bool.html'>Bool</a> isRunning()</code></p>
+
+<p>Return <code>true</code> if child process is currently running or <code>false</code> if not started or terminated.</p>
+</dd>
+<dt id='kill'>
+kill</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/This.html'>This</a> kill()</code></p>
+
+<p>Kill the child process. Use <code><a href='Proc.html#waitFor'>waitFor</a></code> to block until the process has terminated.</p>
+</dd>
+<dt id='make'>
+make</dt>
+<dd>
+<p class='sig'>
+<code>new make(|<a href='http://fantom.org/doc/sys/This.html'>This</a>| f)</code></p>
+
+<p>It-block constructor.</p>
+</dd>
+<dt id='okOrThrow'>
+okOrThrow</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/This.html'>This</a> okOrThrow()</code></p>
+
+<p>Check the exit code the process returned.  If the code was <code>0</code> return this. If the code was non-zero throws an IOErr. If the process is still running, the same semantics apply as <code><a href='Proc.html#exitCode'>exitCode</a></code>.</p>
+</dd>
+<dt id='out'>
+out</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/OutStream.html'>OutStream</a> out()</code></p>
+
+<p>Return OutStream used to write to process stdin.</p>
+</dd>
+<dt id='redirectErr'>
+redirectErr</dt>
+<dd>
+<p class='sig'>
+<code>const <a href='http://fantom.org/doc/sys/Bool.html'>Bool</a> redirectErr := false</code></p>
+
+<p>If <code>true</code>, then stderr is redirected to stdout.</p>
+</dd>
+<dt id='run'>
+run</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/This.html'>This</a> run()</code></p>
+
+<p>Spawn the child process. See <code><a href='Proc.html#waitFor'>waitFor</a></code> to block until the process has terminated, and <code><a href='Proc.html#exitCode'>exitCode</a></code> to retreive process exit code.</p>
+</dd>
+<dt id='sinkErr'>
+sinkErr</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/This.html'>This</a> sinkErr()</code></p>
+
+<p>Sink the stderr output stream to Fantom's stdout. This method will spawn a background actor to pipe the process stderr stream to <code>Env.cur.out</code>. Must be called after <code><a href='Proc.html#run'>run</a></code> and requires <code><a href='Proc.html#redirectErr'>redirectErr</a></code> to be <code>false</code>. Once this method has been invoked, <code><a href='Proc.html#err'>err</a></code> is no longer available.</p>
+</dd>
+<dt id='waitFor'>
+waitFor</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/This.html'>This</a> waitFor()</code></p>
+
+<p>Block the current thread until the child process has terminated. Use <code><a href='Proc.html#exitCode'>exitCode</a></code> to retreive exit code.</p>
+</dd>
+</dl>
+</div>
+<div class='sidebar'>
+<h3>Source</h3>
+<ul>
+<li>Not available</li></ul>
+<h3>Slots</h3>
+<ul>
+<li><a href='#cmd'>cmd</a></li><li><a href='#dir'>dir</a></li><li><a href='#env'>env</a></li><li><a href='#err'>err</a></li><li><a href='#exitCode'>exitCode</a></li><li><a href='#in'>in</a></li><li><a href='#isRunning'>isRunning</a></li><li><a href='#kill'>kill</a></li><li><a href='#make'>make</a></li><li><a href='#okOrThrow'>okOrThrow</a></li><li><a href='#out'>out</a></li><li><a href='#redirectErr'>redirectErr</a></li><li><a href='#run'>run</a></li><li><a href='#sinkErr'>sinkErr</a></li><li><a href='#waitFor'>waitFor</a></li></ul>
+</div>
+</div>
+
+</div>
+<footer>
+</footer>
+</body>
+</html>

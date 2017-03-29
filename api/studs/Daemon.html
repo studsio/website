@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <title>Daemon &ndash; Studs</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+  <!--
+  <meta name='viewport' content='initial-scale=1.0' />
+  <meta name='description' content='' />
+  -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:700,400' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' type='text/css' href='../../doc.css' />
+</head>
+<body>
+<header>
+  <a href='../../index.html'>Home</a>
+  <a href='../../doc/AboutStuds.html'>Documentation</a>
+  <a href='../../tut/Tutorials.html'>Tutorials</a>
+  <a href='../../api/studs/index.html'>API</a>
+  <a href='https://bitbucket.org/studs/core'>BitBucket</a>
+</header>
+<div class='main'>
+<p class='api-index'><a href='index.html'>All Types</a></p><div class='mainSidebar'>
+<div class='main type'>
+<h1><span>abstract const class</span> studs::Daemon</h1>
+<pre><a href='http://fantom.org/doc/sys/Obj.html'>sys::Obj</a>
+  studs::Daemon</pre>
+
+<p>Daemon provides an API for long-running system services running on their own thread with life-cycle callbacks for start, stop, poll, and custom messages.</p>
+
+<p>Daemons are managed by a <code><a href='DaemonSupervisor.html'>DaemonSupervisor</a></code> instance.</p>
+<dl>
+<dt id='log'>
+log</dt>
+<dd>
+<p class='sig'>
+<code>const <a href='http://fantom.org/doc/sys/Log.html'>Log</a> log</code></p>
+
+<p>Log for this daemon.</p>
+</dd>
+<dt id='make'>
+make</dt>
+<dd>
+<p class='sig'>
+<code>new make(<a href='http://fantom.org/doc/sys/Duration.html'>Duration?</a> pollFreq)</code></p>
+
+<p>Subclass constructor where <code>name</code> is the name of this service, and <code>pollFreq</code> is the frequency to invoke <code><a href='Daemon.html#onPoll'>onPoll</a></code> callback, or <code>null</code> to not schedule a poll callback.</p>
+</dd>
+<dt id='name'>
+name</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/Str.html'>Str</a> name()</code></p>
+
+<p>Programmtic name of this daemon, which by convention is simply the type name lowercased.</p>
+</dd>
+<dt id='onMsg'>
+onMsg</dt>
+<dd>
+<p class='sig'>
+<code>protected virtual <a href='http://fantom.org/doc/sys/Obj.html'>Obj?</a> onMsg(<a href='DaemonMsg.html'>DaemonMsg</a> m)</code></p>
+
+<p>Callback to process a daemon message.</p>
+</dd>
+<dt id='onPoll'>
+onPoll</dt>
+<dd>
+<p class='sig'>
+<code>protected virtual <a href='http://fantom.org/doc/sys/Void.html'>Void</a> onPoll()</code></p>
+
+<p>Callback when periodic poll is dispatched.</p>
+</dd>
+<dt id='onStart'>
+onStart</dt>
+<dd>
+<p class='sig'>
+<code>protected virtual <a href='http://fantom.org/doc/sys/Void.html'>Void</a> onStart()</code></p>
+
+<p>Callback when daemon is started.</p>
+</dd>
+<dt id='onStop'>
+onStop</dt>
+<dd>
+<p class='sig'>
+<code>protected virtual <a href='http://fantom.org/doc/sys/Void.html'>Void</a> onStop()</code></p>
+
+<p>Callback when daemon is stopped.</p>
+</dd>
+<dt id='send'>
+send</dt>
+<dd>
+<p class='sig'>
+<code> <a href='../concurrent/Future.html'>Future</a> send(<a href='DaemonMsg.html'>DaemonMsg</a> m)</code></p>
+
+<p>Send this daemon a message.</p>
+</dd>
+</dl>
+</div>
+<div class='sidebar'>
+<h3>Source</h3>
+<ul>
+<li>Not available</li></ul>
+<h3>Slots</h3>
+<ul>
+<li><a href='#log'>log</a></li><li><a href='#make'>make</a></li><li><a href='#name'>name</a></li><li><a href='#onMsg'>onMsg</a></li><li><a href='#onPoll'>onPoll</a></li><li><a href='#onStart'>onStart</a></li><li><a href='#onStop'>onStop</a></li><li><a href='#send'>send</a></li></ul>
+</div>
+</div>
+
+</div>
+<footer>
+</footer>
+</body>
+</html>
