@@ -30,7 +30,7 @@ class BuildDocs
   Str:Str[] toc := [:]
   {
     it.ordered = true
-    it.set("Overview", ["AboutStuds", "GettingStarted"])
+    it.set("Overview", ["AboutStuds", "GettingStarted", "Changelog"])
     it.set("Basics",   ["Building", "Daemons", "faninit", "Pack"])
     it.set("Network",  ["Networking", "NTP"])
     it.set("I/O",      ["Leds", "Uart"])
