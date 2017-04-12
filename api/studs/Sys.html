@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-  <title>Networkd &ndash; Studs</title>
+  <title>Sys &ndash; Studs</title>
   <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
   <!--
   <meta name='viewport' content='initial-scale=1.0' />
@@ -22,28 +22,39 @@
 <div class='main'>
 <p class='api-index'><a href='index.html'>All Types</a></p><div class='mainSidebar'>
 <div class='main type'>
-<h1><span>const class</span> studs::Networkd</h1>
+<h1><span>class</span> studs::Sys</h1>
 <pre><a href='http://fantom.org/doc/sys/Obj.html'>sys::Obj</a>
-  <a href='Daemon.html'>studs::Daemon</a>
-    studs::Networkd</pre>
+  studs::Sys</pre>
 
-<p>Networkd</p>
+<p>Sys provides system level information and utilites for a target device.</p>
 <dl>
-<dt id='cur'>
-cur</dt>
+<dt id='props'>
+props</dt>
 <dd>
 <p class='sig'>
-<code>const static <a href='Networkd.html'>Networkd?</a> cur(<a href='http://fantom.org/doc/sys/Bool.html'>Bool</a> checked := true)</code></p>
+<code>const static <a href='http://fantom.org/doc/sys/Str.html'>Str</a>:<a href='http://fantom.org/doc/sys/Str.html'>Str</a> props()</code></p>
 
-<p>Get the Networkd instance for this vm.  If an instance is not found, throw Err if <code>checked</code> otherwise reutrn null.</p>
+<p>Get <code>etc/sys.props</code> system properites, which includes:</p>
+
+<ul>
+<li><code>proj.name</code></li>
+
+<li><code>proj.version</code></li>
+
+<li><code>studs.version</code></li>
+
+<li><code>system.name</code></li>
+
+<li><code>system.version</code></li>
+</ul>
 </dd>
-<dt id='setup'>
-setup</dt>
+<dt id='reboot'>
+reboot</dt>
 <dd>
 <p class='sig'>
-<code> <a href='http://fantom.org/doc/sys/This.html'>This</a> setup(<a href='http://fantom.org/doc/sys/Str.html'>Str</a>:<a href='http://fantom.org/doc/sys/Str.html'>Str</a> opts)</code></p>
+<code>const static <a href='http://fantom.org/doc/sys/Void.html'>Void</a> reboot()</code></p>
 
-<p>Configure a network interface.</p>
+<p>Reboot this device.</p>
 </dd>
 </dl>
 </div>
@@ -53,7 +64,7 @@ setup</dt>
 <li>Not available</li></ul>
 <h3>Slots</h3>
 <ul>
-<li><a href='#cur'>cur</a></li><li><a href='#setup'>setup</a></li></ul>
+<li><a href='#props'>props</a></li><li><a href='#reboot'>reboot</a></li></ul>
 </div>
 </div>
 

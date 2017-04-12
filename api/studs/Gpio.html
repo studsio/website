@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <title>Gpio &ndash; Studs</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+  <!--
+  <meta name='viewport' content='initial-scale=1.0' />
+  <meta name='description' content='' />
+  -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:700,400' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' type='text/css' href='../../doc.css' />
+</head>
+<body>
+<header>
+  <a href='../../index.html'>Home</a>
+  <a href='../../doc/AboutStuds.html'>Documentation</a>
+  <a href='../../tut/Tutorials.html'>Tutorials</a>
+  <a href='../../api/studs/index.html'>API</a>
+  <a href='https://bitbucket.org/studs'>BitBucket</a>
+</header>
+<div class='main'>
+<p class='api-index'><a href='index.html'>All Types</a></p><div class='mainSidebar'>
+<div class='main type'>
+<h1><span>class</span> studs::Gpio</h1>
+<pre><a href='http://fantom.org/doc/sys/Obj.html'>sys::Obj</a>
+  studs::Gpio</pre>
+
+<p>Gpio provides high level access to GPIO pins through the Linux <code>/sys/class/gpio</code> interface.</p>
+
+<p>See <a href='../../doc/Gpio.html'>Gpio</a> chapter for details.</p>
+<dl>
+<dt id='close'>
+close</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/Void.html'>Void</a> close()</code></p>
+
+<p>Close this port.</p>
+</dd>
+<dt id='listen'>
+listen</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/Void.html'>Void</a> listen(<a href='http://fantom.org/doc/sys/Str.html'>Str</a> mode, |<a href='http://fantom.org/doc/sys/Int.html'>Int</a>| callback)</code></p>
+
+<p>Register an interrupt handler to listen for GPIO output changes. The <code>mode</code> should be one of the strings "rising", "falling" or "both" to indicate which edge(s) the ISR is to be triggered on. Invoke the given callback function when a change occurs. This method will block listening until <code><a href='Gpio.html#close'>close</a></code> is called.</p>
+</dd>
+<dt id='open'>
+open</dt>
+<dd>
+<p class='sig'>
+<code>const static <a href='Gpio.html'>Gpio</a> open(<a href='http://fantom.org/doc/sys/Int.html'>Int</a> pin, <a href='http://fantom.org/doc/sys/Str.html'>Str</a> dir)</code></p>
+
+<p>Open a GPIO port with given pin and direction, where <code>dir</code> is <code>"in"</code> or <code>"out"</code>.</p>
+</dd>
+<dt id='read'>
+read</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/Int.html'>Int</a> read()</code></p>
+
+<p>Read the current value of the pin.</p>
+</dd>
+<dt id='write'>
+write</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/This.html'>This</a> write(<a href='http://fantom.org/doc/sys/Int.html'>Int</a> val)</code></p>
+
+<p>Write the given value to the GPIO. The GPIO should be configured as an output. Valid values are <code>0</code> for logic low, or <code>1</code> for logic high. Other non-zero values will result in logic high being output. Returns this.</p>
+</dd>
+</dl>
+</div>
+<div class='sidebar'>
+<h3>Source</h3>
+<ul>
+<li>Not available</li></ul>
+<h3>Slots</h3>
+<ul>
+<li><a href='#close'>close</a></li><li><a href='#listen'>listen</a></li><li><a href='#open'>open</a></li><li><a href='#read'>read</a></li><li><a href='#write'>write</a></li></ul>
+</div>
+</div>
+
+</div>
+<footer>
+</footer>
+</body>
+</html>

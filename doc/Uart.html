@@ -17,25 +17,24 @@
   <a href='../doc/AboutStuds.html'>Documentation</a>
   <a href='../tut/Tutorials.html'>Tutorials</a>
   <a href='../api/studs/index.html'>API</a>
-  <a href='https://bitbucket.org/studs/core'>BitBucket</a>
+  <a href='https://bitbucket.org/studs'>BitBucket</a>
 </header>
 <div class='main'>
 <h1 id="uart">Uart</h1>
 <p>The <a href="../api/studs/Uart.html">Uart</a> API allows you to communicate over serial UART interfaces.</p>
-<h2 id="enumerating-ports">Enumerating Ports</h2>
-<p><a href="../api/studs/Uart.html#list">Uart.list</a> will enumerate the current serial ports as a <code>Str:Obj</code> map, where the keys are the port names and the values are the available meta-data about each port:</p>
-<pre><code>[ &quot;ttyS0&quot;: [:],
-  &quot;ttyUSB1&quot;: [
-   &quot;desc&quot;:&quot;USB Serial Port&quot;, &quot;man&quot;:&quot;FTDI&quot;, &quot;pid&quot;:24577, &quot;vid&quot;:1027
-  ]
-]</code></pre>
-<h2 id="working-with-a-uart">Working with a Uart</h2>
+<h2 id="basics">Basics</h2>
 <p>Open and close a serial port using <a href="../api/studs/Uart.html#open">open</a> and <a href="../api/studs/Uart.html#close">close</a>:</p>
-<pre><code>uart := Uart.open(&quot;ttyS0&quot;)
+<pre><code>uart := Uart.open(&quot;ttyS0&quot;, UartConfig {})
 uart.close</code></pre>
 <p>Read and write data using the standard Fantom I/O streams with <a href="../api/studs/Uart.html#in">in</a> and <a href="../api/studs/Uart.html#out">out</a>:</p>
 <pre><code>uart.in.readLine
 uart.out.printLine(&quot;foobar&quot;)</code></pre>
+<h2 id="enumerating-ports">Enumerating Ports</h2>
+<p><a href="../api/studs/Uart.html#list">Uart.list</a> will enumerate the current serial ports as a <code>Str:Obj</code> map, where the keys are the port names and the values are the available meta-data about each port:</p>
+<pre><code>Uart.list =&gt;
+  [ &quot;ttyS0&quot;: [:],
+    &quot;ttyUSB1&quot;: [&quot;desc&quot;:&quot;USB Serial Port&quot;, &quot;man&quot;:&quot;FTDI&quot;, &quot;pid&quot;:24577, &quot;vid&quot;:1027]
+  ]</code></pre>
 <aside>
 </ul><h3>Overview</h3>
 <ul>
@@ -57,10 +56,13 @@ uart.out.printLine(&quot;foobar&quot;)</code></pre>
 </ul>
 </ul><h3>I/O</h3>
 <ul>
-<li class='h1'><a href='Leds.html'>Leds</a></li>
+<li class='h1'><a href='Led.html'>Led</a></li>
+<li class='h1'><a href='Gpio.html'>Gpio</a></li>
+<li class='h1'><a href='I2C.html'>I2C</a></li>
+<li class='h1'><a href='Spi.html'>Spi</a></li>
 <li class='h1'><a href='#uart'>Uart</a></li>
+<li class='h2'><a href='#basics'>Basics</a></li>
 <li class='h2'><a href='#enumerating-ports'>Enumerating Ports</a></li>
-<li class='h2'><a href='#working-with-a-uart'>Working With a Uart</a></li>
 </ul>
 </ul><h3>System</h3>
 <ul>

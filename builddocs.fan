@@ -33,7 +33,7 @@ class BuildDocs
     it.set("Overview", ["AboutStuds", "GettingStarted", "Changelog"])
     it.set("Basics",   ["Building", "Daemons", "faninit", "Pack"])
     it.set("Network",  ["Networking", "NTP"])
-    it.set("I/O",      ["Leds", "Uart"])
+    it.set("I/O",      ["Led", "Gpio", "I2C", "Spi", "Uart"])
     it.set("System",   ["Systems"])
   }
 
@@ -142,7 +142,7 @@ class BuildDocs
         }
         else
         {
-          dis := ch.toDisplayName
+          dis := ch=="I2C" ? ch : ch.toDisplayName
           out.printLine("<li class='h1'><a href='${ch}.html'>$dis</a></li>")
         }
       }
@@ -295,7 +295,7 @@ class BuildDocs
           <a href='${path}/doc/AboutStuds.html'>Documentation</a>
           <a href='${path}/tut/Tutorials.html'>Tutorials</a>
           <a href='${path}/api/studs/index.html'>API</a>
-          <a href='https://bitbucket.org/studs/core'>BitBucket</a>
+          <a href='https://bitbucket.org/studs'>BitBucket</a>
         </header>
         <div class='main'>
         """).flush.close
@@ -319,9 +319,11 @@ class BuildDocs
       if (s == "a")     return "a"
       if (s == "your")  return "your"
       if (s == "jre")   return "JRE"
+      if (s == "i2c")   return "I2C"
       if (s == "io")    return "I/O"
       if (s == "ip")    return "IP"
       if (s == "macos") return "MacOS"
+      if (s == "onoff") return "On/Off"
       return s.capitalize
     }.join(" ")
   }

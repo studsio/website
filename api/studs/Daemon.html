@@ -17,7 +17,7 @@
   <a href='../../doc/AboutStuds.html'>Documentation</a>
   <a href='../../tut/Tutorials.html'>Tutorials</a>
   <a href='../../api/studs/index.html'>API</a>
-  <a href='https://bitbucket.org/studs/core'>BitBucket</a>
+  <a href='https://bitbucket.org/studs'>BitBucket</a>
 </header>
 <div class='main'>
 <p class='api-index'><a href='index.html'>All Types</a></p><div class='mainSidebar'>
@@ -28,7 +28,7 @@
 
 <p>Daemon provides an API for long-running system services running on their own thread with life-cycle callbacks for start, stop, poll, and custom messages.</p>
 
-<p>Daemons are managed by a <code><a href='DaemonMgr.html'>DaemonMgr</a></code> instance.</p>
+<p>See <a href='../../doc/Daemons.html'>Daemons</a> chapter for details.</p>
 <dl>
 <dt id='log'>
 log</dt>
@@ -94,6 +94,14 @@ send</dt>
 
 <p>Send this daemon a message.</p>
 </dd>
+<dt id='start'>
+start</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/This.html'>This</a> start()</code></p>
+
+<p>Start this daemon instance. This method is guaranteed not to throw an exception (but will log errors to <code><a href='Daemon.html#log'>log</a></code>). Any error handling required should be implemented inside the <code><a href='Daemon.html#onStart'>onStart</a></code> override method.</p>
+</dd>
 </dl>
 </div>
 <div class='sidebar'>
@@ -102,7 +110,7 @@ send</dt>
 <li>Not available</li></ul>
 <h3>Slots</h3>
 <ul>
-<li><a href='#log'>log</a></li><li><a href='#make'>make</a></li><li><a href='#name'>name</a></li><li><a href='#onMsg'>onMsg</a></li><li><a href='#onPoll'>onPoll</a></li><li><a href='#onStart'>onStart</a></li><li><a href='#onStop'>onStop</a></li><li><a href='#send'>send</a></li></ul>
+<li><a href='#log'>log</a></li><li><a href='#make'>make</a></li><li><a href='#name'>name</a></li><li><a href='#onMsg'>onMsg</a></li><li><a href='#onPoll'>onPoll</a></li><li><a href='#onStart'>onStart</a></li><li><a href='#onStop'>onStop</a></li><li><a href='#send'>send</a></li><li><a href='#start'>start</a></li></ul>
 </div>
 </div>
 

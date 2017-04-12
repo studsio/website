@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-  <title>Networkd &ndash; Studs</title>
+  <title>Spi &ndash; Studs</title>
   <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
   <!--
   <meta name='viewport' content='initial-scale=1.0' />
@@ -22,28 +22,37 @@
 <div class='main'>
 <p class='api-index'><a href='index.html'>All Types</a></p><div class='mainSidebar'>
 <div class='main type'>
-<h1><span>const class</span> studs::Networkd</h1>
+<h1><span>class</span> studs::Spi</h1>
 <pre><a href='http://fantom.org/doc/sys/Obj.html'>sys::Obj</a>
-  <a href='Daemon.html'>studs::Daemon</a>
-    studs::Networkd</pre>
+  studs::Spi</pre>
 
-<p>Networkd</p>
+<p>Spi allows you to communicate over serial SPI interfaces.</p>
+
+<p>See <a href='../../doc/Spi.html'>Spi</a> chapter for details.</p>
 <dl>
-<dt id='cur'>
-cur</dt>
+<dt id='close'>
+close</dt>
 <dd>
 <p class='sig'>
-<code>const static <a href='Networkd.html'>Networkd?</a> cur(<a href='http://fantom.org/doc/sys/Bool.html'>Bool</a> checked := true)</code></p>
+<code> <a href='http://fantom.org/doc/sys/Void.html'>Void</a> close()</code></p>
 
-<p>Get the Networkd instance for this vm.  If an instance is not found, throw Err if <code>checked</code> otherwise reutrn null.</p>
+<p>Close this port.</p>
 </dd>
-<dt id='setup'>
-setup</dt>
+<dt id='open'>
+open</dt>
 <dd>
 <p class='sig'>
-<code> <a href='http://fantom.org/doc/sys/This.html'>This</a> setup(<a href='http://fantom.org/doc/sys/Str.html'>Str</a>:<a href='http://fantom.org/doc/sys/Str.html'>Str</a> opts)</code></p>
+<code>const static <a href='Spi.html'>Spi</a> open(<a href='http://fantom.org/doc/sys/Str.html'>Str</a> name, <a href='SpiConfig.html'>SpiConfig</a> config)</code></p>
 
-<p>Configure a network interface.</p>
+<p>Open a SPI port with given device name and config. Throws IOErr if port could not be opended.</p>
+</dd>
+<dt id='transfer'>
+transfer</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/Buf.html'>Buf</a> transfer(<a href='http://fantom.org/doc/sys/Buf.html'>Buf</a> data)</code></p>
+
+<p>Perform a SPI transfer. The <code>data</code> should be a binary containing the bytes to send. Since SPI transfers simultaneously send and receive, the return value will be a <code>Buf</code> of the same length.</p>
 </dd>
 </dl>
 </div>
@@ -53,7 +62,7 @@ setup</dt>
 <li>Not available</li></ul>
 <h3>Slots</h3>
 <ul>
-<li><a href='#cur'>cur</a></li><li><a href='#setup'>setup</a></li></ul>
+<li><a href='#close'>close</a></li><li><a href='#open'>open</a></li><li><a href='#transfer'>transfer</a></li></ul>
 </div>
 </div>
 

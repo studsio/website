@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-  <title>DaemonMgr &ndash; Studs</title>
+  <title>SpiConfig &ndash; Studs</title>
   <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
   <!--
   <meta name='viewport' content='initial-scale=1.0' />
@@ -17,24 +17,32 @@
   <a href='../../doc/AboutStuds.html'>Documentation</a>
   <a href='../../tut/Tutorials.html'>Tutorials</a>
   <a href='../../api/studs/index.html'>API</a>
-  <a href='https://bitbucket.org/studs/core'>BitBucket</a>
+  <a href='https://bitbucket.org/studs'>BitBucket</a>
 </header>
 <div class='main'>
 <p class='api-index'><a href='index.html'>All Types</a></p><div class='mainSidebar'>
 <div class='main type'>
-<h1><span>const class</span> studs::DaemonMgr</h1>
+<h1><span>const class</span> studs::SpiConfig</h1>
 <pre><a href='http://fantom.org/doc/sys/Obj.html'>sys::Obj</a>
-  studs::DaemonMgr</pre>
+  studs::SpiConfig</pre>
 
-<p>DaemonMgr manages starting, stopping, and monitoring <code><a href='Daemon.html'>Daemon</a></code> instances.</p>
+<p>SpiConfig models configuration for a <code><a href='Spi.html'>Spi</a></code> port.</p>
 <dl>
-<dt id='daemons'>
-daemons</dt>
+<dt id='bits'>
+bits</dt>
 <dd>
 <p class='sig'>
-<code>const <a href='Daemon.html'>Daemon</a>[] daemons</code></p>
+<code>const <a href='http://fantom.org/doc/sys/Int.html'>Int</a> bits := 8</code></p>
 
-<p>Daemons this supervisor is managing.</p>
+<p>Number of bits per word on the bus (8 or 16; defaults to 8)</p>
+</dd>
+<dt id='delay'>
+delay</dt>
+<dd>
+<p class='sig'>
+<code>const <a href='http://fantom.org/doc/sys/Int.html'>Int</a> delay := 10</code></p>
+
+<p>The delay between transactions in microseconds (defaults to 10us)</p>
 </dd>
 <dt id='make'>
 make</dt>
@@ -44,13 +52,21 @@ make</dt>
 
 <p>It-block constructor.</p>
 </dd>
-<dt id='start'>
-start</dt>
+<dt id='mode'>
+mode</dt>
 <dd>
 <p class='sig'>
-<code> <a href='http://fantom.org/doc/sys/Void.html'>Void</a> start()</code></p>
+<code>const <a href='http://fantom.org/doc/sys/Int.html'>Int</a> mode := 0</code></p>
 
-<p>Start this supervisor and <code><a href='DaemonMgr.html#daemons'>daemons</a></code>.</p>
+<p>Mode specifies the clock polarity and phase to use (0..3)</p>
+</dd>
+<dt id='speed'>
+speed</dt>
+<dd>
+<p class='sig'>
+<code>const <a href='http://fantom.org/doc/sys/Int.html'>Int</a> speed := 1000000</code></p>
+
+<p>Bus speed in hertz (defaults to 1 MHz)</p>
 </dd>
 </dl>
 </div>
@@ -60,7 +76,7 @@ start</dt>
 <li>Not available</li></ul>
 <h3>Slots</h3>
 <ul>
-<li><a href='#daemons'>daemons</a></li><li><a href='#make'>make</a></li><li><a href='#start'>start</a></li></ul>
+<li><a href='#bits'>bits</a></li><li><a href='#delay'>delay</a></li><li><a href='#make'>make</a></li><li><a href='#mode'>mode</a></li><li><a href='#speed'>speed</a></li></ul>
 </div>
 </div>
 

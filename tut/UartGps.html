@@ -17,7 +17,7 @@
   <a href='../doc/AboutStuds.html'>Documentation</a>
   <a href='../tut/Tutorials.html'>Tutorials</a>
   <a href='../api/studs/index.html'>API</a>
-  <a href='https://bitbucket.org/studs/core'>BitBucket</a>
+  <a href='https://bitbucket.org/studs'>BitBucket</a>
 </header>
 <div class='main'>
 <h1 id="using-uart-to-read-gps-module">Using UART to read GPS module</h1>
@@ -45,7 +45,7 @@ const class Main
     DeviceTree.enable(&quot;BB-UART1&quot;)
 
     // open uart and read forever
-    uart := Uart().open(&quot;ttyS1&quot;, UartConfig {})
+    uart := Uart.open(&quot;ttyS1&quot;, UartConfig {})
     while (true)
     {
       try
@@ -68,7 +68,7 @@ DeviceTree.enable(&quot;BB-UART1&quot;)</code></pre>
 <p>The <code>ttyS1</code> serial port will now be available for use.</p>
 <h3 id="open-port">Open port</h3>
 <p>Next we need to open the UART with the appropriate configuration options. The GPS module happens to use the default config (<code>9600-8n1</code>) so we can pass in the defaults:</p>
-<pre><code>uart := Uart().open(&quot;ttyS1&quot;, UartConfig {})</code></pre>
+<pre><code>uart := Uart.open(&quot;ttyS1&quot;, UartConfig {})</code></pre>
 <h3 id="read-port">Read port</h3>
 <p>In our example code, we will loop forever dumping what we read from the GPS module to stdout:</p>
 <pre><code>line := uart.in.readLine

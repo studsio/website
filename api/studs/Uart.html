@@ -17,7 +17,7 @@
   <a href='../../doc/AboutStuds.html'>Documentation</a>
   <a href='../../tut/Tutorials.html'>Tutorials</a>
   <a href='../../api/studs/index.html'>API</a>
-  <a href='https://bitbucket.org/studs/core'>BitBucket</a>
+  <a href='https://bitbucket.org/studs'>BitBucket</a>
 </header>
 <div class='main'>
 <p class='api-index'><a href='index.html'>All Types</a></p><div class='mainSidebar'>
@@ -27,6 +27,8 @@
   studs::Uart</pre>
 
 <p>Uart models a UART port instance.</p>
+
+<p>See <a href='../../doc/Uart.html'>Uart</a> chapter for details.</p>
 <dl>
 <dt id='close'>
 close</dt>
@@ -56,7 +58,7 @@ list</dt>
 open</dt>
 <dd>
 <p class='sig'>
-<code> <a href='http://fantom.org/doc/sys/This.html'>This</a> open(<a href='http://fantom.org/doc/sys/Str.html'>Str</a> name, <a href='UartConfig.html'>UartConfig</a> config)</code></p>
+<code>const static <a href='Uart.html'>Uart</a> open(<a href='http://fantom.org/doc/sys/Str.html'>Str</a> name, <a href='UartConfig.html'>UartConfig</a> config)</code></p>
 
 <p>Open the serial port <code>name</code> with given config. Throws IOErr if port cannot be opened.</p>
 </dd>
@@ -72,9 +74,9 @@ out</dt>
 read</dt>
 <dd>
 <p class='sig'>
-<code> <a href='http://fantom.org/doc/sys/Buf.html'>Buf?</a> read()</code></p>
+<code> <a href='http://fantom.org/doc/sys/Buf.html'>Buf</a> read()</code></p>
 
-<p>TODO</p>
+<p>Read the available bytes this port, which may be <code>0</code> if data is not available. Throws IOErr if read failed.</p>
 </dd>
 <dt id='write'>
 write</dt>
@@ -82,7 +84,7 @@ write</dt>
 <p class='sig'>
 <code> <a href='http://fantom.org/doc/sys/Void.html'>Void</a> write(<a href='http://fantom.org/doc/sys/Buf.html'>Buf</a> buf)</code></p>
 
-<p>TODO</p>
+<p>Write the given bytes to this port. Throws IOErr if write failed.</p>
 </dd>
 </dl>
 </div>
