@@ -163,12 +163,12 @@ class BuildDocs
 
     // cleanup old docs
     bash("rm $tutOutDir.osPath/*.html")
-    // bash("rm $tutOutDir.osPath/*.svg")
+    bash("rm $tutOutDir.osPath/*.png")
 
     // copy artwork
     tutSrcDir.listFiles.each |f|
     {
-      if (f.ext == "svg") f.copyTo(tutOutDir + `$f.name`, ["overwrite":true])
+      if (f.ext == "png") f.copyTo(tutOutDir + `$f.name`, ["overwrite":true])
     }
 
     done := File[,]

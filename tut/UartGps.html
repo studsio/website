@@ -29,7 +29,37 @@
 <li>Adafruit Ultimate GPS Breakout – $40 from <a href="https://www.adafruit.com/product/746">Adafruit</a></li>
 </ul>
 <h2 id="wiring">Wiring</h2>
-<p>TODO</p>
+<p>Wiring diagram for connecting your BBB to the GPS breakout:</p>
+<div class="figure">
+<img src="uart-gps.png" alt="Wiring Diagram" />
+<p class="caption">Wiring Diagram</p>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th>BBB Pin</th>
+<th>GPS Breakout Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>P9_1</td>
+<td>GND</td>
+</tr>
+<tr class="even">
+<td>P9_7</td>
+<td>VIN</td>
+</tr>
+<tr class="odd">
+<td>P9_24</td>
+<td>RX</td>
+</tr>
+<tr class="even">
+<td>P9_26</td>
+<td>TX</td>
+</tr>
+</tbody>
+</table>
 <h2 id="coding">Coding</h2>
 <p>First create a new project:</p>
 <pre><code>$ fan studs init uartgps</code></pre>
