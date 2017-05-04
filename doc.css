@@ -76,6 +76,10 @@ code:not(pre code) {
   border-radius: 3px;
 }
 
+h1 code:not(pre code) { font-size: 90%; font-weight: bold; }
+h2 code:not(pre code) { font-size: 90%; font-weight: bold; }
+h3 code:not(pre code) { font-size: 90%; font-weight: bold; }
+
 pre, pre code { font: 13px Consolas, Menlo; }
 pre {
   padding: 16px;

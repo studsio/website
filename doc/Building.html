@@ -21,10 +21,34 @@
 </header>
 <div class='main'>
 <h1 id="building">Building</h1>
-<p>TODO: <code>fan studs asm</code> detailed docs</p>
-<h2 id="targets">Targets</h2>
-<p>By default asm will assemble all targets defined in <code>studs.props</code>. To assemble only a specific target(s) you can pass them on the command line:</p>
-<pre><code>fan studs asm rpi3</code></pre>
+<p>Most build and assembly configuration is specified in <code>studs.props</code>:</p>
+<pre><code># Project meta-data
+proj.name=myApp
+proj.ver=1.0.0
+
+# JRE compact profile for target: 1, 2 or 3
+jre.profile=1
+
+# Uncomment to add target platform to build
+target.bbb=true
+#target.rpi3=true</code></pre>
+<h2 id="using-fan-asm">Using <code>fan asm</code></h2>
+<p>The <code>asm</code> command is used to assemble firmware bundles from your application:</p>
+<pre><code>fan studs asm [target]* [--clean]</code></pre>
+<ul>
+<li><p><code>[target*]</code> – By default asm will assemble all targets defined in <code>studs.props</code>. To assemble only a specific target(s) you can pass them on the command line:</p>
+<pre><code>$ fan studs asm        # build all enabled targets
+$ fan studs asm rpi3   # build only rpi3 target</code></pre></li>
+<li><p><code>--clean</code> – This option deletes intermediate and cached System and JRE files:</p>
+<pre><code>$ fan studs asm --clean</code></pre>
+<p>The next time <code>fan studs asm</code> is invoked, systems will be re-downloaded and configured, and the JRE will be rebuilt.</p></li>
+</ul>
+<h2 id="jre-compact-profiles">JRE Compact Profiles</h2>
+<p>The <code>asm</code> command will generate any of the 3 compact profiles for the target embedded JRE. See <a href="http://www.oracle.com/technetwork/java/embedded/resources/tech/compact-profiles-overview-2157132.html">Compact Profiles Overview</a> for details and comparison of each profile.</p>
+<p>Studs defaults to profile <code>1</code> to minimize the release file size. The profile may be changed in <code>studs.props</code>:</p>
+<pre><code># JRE compact profile for target: 1, 2 or 3
+jre.profile=1</code></pre>
+<p>Remember to run <code>asm --clean</code> after making any changes to <code>jre.profile</code>.</p>
 <h2 id="rootfs-additions">Rootfs Additions</h2>
 <p>To add additional files into the root filesystem, create a folder named <code>rootfs-additions</code> under the <code>src</code> directory, with a subdirectory for each system target:</p>
 <pre><code>myproj/
@@ -50,7 +74,8 @@ jres.dir=/some/dir/</code></pre>
 </ul><h3>Basics</h3>
 <ul>
 <li class='h1'><a href='#building'>Building</a></li>
-<li class='h2'><a href='#targets'>Targets</a></li>
+<li class='h2'><a href='#using-fan-asm'>Using Fan Asm</a></li>
+<li class='h2'><a href='#jre-compact-profiles'>JRE Compact Profiles</a></li>
 <li class='h2'><a href='#rootfs-additions'>Rootfs Additions</a></li>
 <li class='h2'><a href='#profile-configuration'>Profile Configuration</a></li>
 <li class='h1'><a href='Daemons.html'>Daemons</a></li>

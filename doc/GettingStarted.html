@@ -23,10 +23,20 @@
 <h1 id="getting-started">Getting Started</h1>
 <h2 id="installation">Installation</h2>
 <p>First make sure you have Java 7 or later installed on your machine. This is required for Fantom and for creating our embedded JRE images.</p>
-<p>Next we need to install Fantom, Studs and several utilities we’ll need to build our firmware. The easiest method is to use <a href="http://brew.sh">Homebrew</a> and <a href="http://fantom.org/doc/docFanr/Tool">fanr</a>:</p>
+<p>Next we need to install Fantom, Studs and several utilities we’ll need to build our firmware.</p>
+<h3 id="macos">macOS</h3>
+<p>The easiest method for macOS is to use <a href="http://brew.sh">Homebrew</a> and <a href="http://fantom.org/doc/docFanr/Tool">fanr</a>:</p>
 <pre><code>$ brew update
 $ brew install fantom
 $ brew install fwup squashfs coreutils
+$ fanr install -r http://eggbox.fantomfactory.org/fanr/ &quot;studs,studsTools&quot;</code></pre>
+<h3 id="linux">Linux</h3>
+<p>Fantom is currently not available in most package managers, so you’ll need to download and unzip onto your system. Follow <a href="http://fantom.org/doc/docTools/Setup#unix">Setup</a> instructions on <a href="http://fantom.org">fantom.org</a>. Note that Java is a pre-requisite for Fantom.</p>
+<p>Next install <code>fwup</code> using the instructions on the <a href="https://github.com/fhunleth/fwup#installing">Installation Page</a>.</p>
+<p>The ssh-askpass package is also required on Linux so <code>burn</code> command will be able to use sudo to gain the required permission to write directly to an SD card:</p>
+<pre><code>$ sudo apt-get install ssh-askpass</code></pre>
+<p>Finally, install squashfs-tools using your distribution’s package manager along with the Studs fantom pods. For example:</p>
+<pre><code>$ sudo apt-get install squashfs-tools
 $ fanr install -r http://eggbox.fantomfactory.org/fanr/ &quot;studs,studsTools&quot;</code></pre>
 <h2 id="create-a-project">Create a Project</h2>
 <p>To get started, first we need to create a new project:</p>
@@ -86,6 +96,7 @@ $ fan studs asm</code></pre>
 └── studs/
     └── releases/
         └── myproj-1.0.0-bbb.fw</code></pre>
+<p>See <a href="Building.html">Building</a> for detailed documentation on the build process.</p>
 <h2 id="running-your-project">Running your Project</h2>
 <p>To run your freshly minted project we need to burn our firmware image onto a SD card:</p>
 <pre><code>$ fan studs burn</code></pre>
@@ -97,6 +108,8 @@ $ fan studs asm</code></pre>
 <li class='h1'><a href='AboutStuds.html'>About Studs</a></li>
 <li class='h1'><a href='#getting-started'>Getting Started</a></li>
 <li class='h2'><a href='#installation'>Installation</a></li>
+<li class='h3'><a href='#macos'>MacOS</a></li>
+<li class='h3'><a href='#linux'>Linux</a></li>
 <li class='h2'><a href='#create-a-project'>Create a Project</a></li>
 <li class='h2'><a href='#install-embedded-jre'>Install Embedded JRE</a></li>
 <li class='h2'><a href='#build-your-project'>Build your Project</a></li>
