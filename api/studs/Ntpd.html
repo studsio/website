@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <title>Ntpd &ndash; Studs</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+  <!--
+  <meta name='viewport' content='initial-scale=1.0' />
+  <meta name='description' content='' />
+  -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:700,400' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' type='text/css' href='../../doc.css' />
+</head>
+<body>
+<header>
+  <a href='../../index.html'>Home</a>
+  <a href='../../doc/AboutStuds.html'>Documentation</a>
+  <a href='../../tut/Tutorials.html'>Tutorials</a>
+  <a href='../../api/studs/index.html'>API</a>
+  <a href='https://bitbucket.org/studs'>BitBucket</a>
+</header>
+<div class='main'>
+<p class='api-index'><a href='index.html'>All Types</a></p><div class='mainSidebar'>
+<div class='main type'>
+<h1><span>const class</span> studs::Ntpd</h1>
+<pre><a href='http://fantom.org/doc/sys/Obj.html'>sys::Obj</a>
+  <a href='Daemon.html'>studs::Daemon</a>
+    studs::Ntpd</pre>
+
+<p>The Ntpd daemon provides support for synchronizing wall clock time using the NTP protocol.</p>
+
+<p>See <a href='../../doc/NTP.html'>NTP</a> chapter for details.</p>
+<dl>
+<dt id='cur'>
+cur</dt>
+<dd>
+<p class='sig'>
+<code>const static <a href='Ntpd.html'>Ntpd?</a> cur(<a href='http://fantom.org/doc/sys/Bool.html'>Bool</a> checked := true)</code></p>
+
+<p>Get the Ntpd instance for this VM.  If an instance is not found, throw Err if <code>checked</code> otherwise return null.</p>
+</dd>
+<dt id='make'>
+make</dt>
+<dd>
+<p class='sig'>
+<code>new make()</code></p>
+</dd>
+<dt id='servers'>
+servers</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/Str.html'>Str</a>[] servers</code></p>
+
+<p>The current NTP server pool.</p>
+</dd>
+<dt id='sync'>
+sync</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/Bool.html'>Bool</a> sync(<a href='http://fantom.org/doc/sys/Duration.html'>Duration?</a> timeout := null)</code></p>
+
+<p>Block until ntpd acquires a valid time.  If <code>timeout</code> is <code>null</code> this method blocks indefinietly.  Returns <code>true</code> time was acquired, or <code>false</code> if timed out.</p>
+</dd>
+</dl>
+</div>
+<div class='sidebar'>
+<h3>Source</h3>
+<ul>
+<li>Not available</li></ul>
+<h3>Slots</h3>
+<ul>
+<li><a href='#cur'>cur</a></li><li><a href='#make'>make</a></li><li><a href='#servers'>servers</a></li><li><a href='#sync'>sync</a></li></ul>
+</div>
+</div>
+
+</div>
+<footer>
+</footer>
+</body>
+</html>

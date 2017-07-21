@@ -21,23 +21,27 @@
 </header>
 <div class='main'>
 <h1 id="networking">Networking</h1>
-<p>TODO: coming in <code>1.5</code> or <code>1.6</code></p>
-<h2 id="networkd">Networkd</h2>
-<p>TODO</p>
-<pre><code>DaemonMgr {
-  it.daemons = [
-    Networkd()
-  ]
-}.start</code></pre>
-<h2 id="static-ip-address">Static IP Address</h2>
-<p>TODO</p>
+<p>Networking support in Studs is provided by the <a href="../api/studs/Networkd.html">Networkd</a> daemon.</p>
+<h2 id="basics">Basics</h2>
+<p>All methods operate on the <code>Networkd</code> singleton, accessed via <a href="../api/studs/Networkd.html#cur">cur</a>. First step is start the daemon:</p>
+<pre><code>Networkd().start</code></pre>
+<p>To list the available interfaces, use <a href="../api/studs/Networkd.html#list">list</a>:</p>
+<pre><code>Networkd.cur.list =&gt; [&quot;eth0&quot;:0]</code></pre>
+<p>To view status and statistics for a given interface, use <a href="../api/studs/Networkd.html#status">status</a>:</p>
+<pre><code>Networkd.cur.status(&quot;eth0&quot;) =&gt;
+  [&quot;name&quot;:&quot;eth0&quot;, &quot;up&quot;:true, &quot;broadcast&quot;, ...]</code></pre>
+<h2 id="static-ip">Static IP</h2>
+<p>To configure a static IP address for an interface, pass the configuration data to <a href="../api/studs/Networkd.html#setup">setup</a>, using <code>&quot;mode&quot;:&quot;static&quot;</code>:</p>
 <pre><code>Networkd.cur.setup([
-  &quot;name&quot;:    &quot;eth0&quot;,
-  &quot;mode&quot;:    &quot;static&quot;,
-  &quot;ipaddr&quot;:  &quot;192.168.1.150&quot;,
-  &quot;netmask&quot;: &quot;255.255.255.0&quot;,
-  &quot;dns&quot;:     &quot;8.8.8.8 8.8.4.4&quot;
+  &quot;name&quot;:   &quot;eth0&quot;,
+  &quot;mode&quot;:   &quot;static&quot;,
+  &quot;ip&quot;:     &quot;192.168.1.150&quot;,
+  &quot;mask&quot;:   &quot;24&quot;,
+  &quot;router&quot;: &quot;192.168.1.1,
+  &quot;dns&quot;:    &quot;8.8.8.8 8.8.4.4&quot;
 ])</code></pre>
+<h2 id="dhcp">DHCP</h2>
+<p>TODO</p>
 <aside>
 </ul><h3>Overview</h3>
 <ul>
@@ -55,8 +59,9 @@
 </ul><h3>Network</h3>
 <ul>
 <li class='h1'><a href='#networking'>Networking</a></li>
-<li class='h2'><a href='#networkd'>Networkd</a></li>
-<li class='h2'><a href='#static-ip-address'>Static IP Address</a></li>
+<li class='h2'><a href='#basics'>Basics</a></li>
+<li class='h2'><a href='#static-ip'>Static IP</a></li>
+<li class='h2'><a href='#dhcp'>Dhcp</a></li>
 <li class='h1'><a href='NTP.html'>NTP</a></li>
 </ul>
 </ul><h3>I/O</h3>

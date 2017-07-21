@@ -42,9 +42,13 @@ close</dt>
 listen</dt>
 <dd>
 <p class='sig'>
-<code> <a href='http://fantom.org/doc/sys/Void.html'>Void</a> listen(<a href='http://fantom.org/doc/sys/Str.html'>Str</a> mode, |<a href='http://fantom.org/doc/sys/Int.html'>Int</a>| callback)</code></p>
+<code> <a href='http://fantom.org/doc/sys/Void.html'>Void</a> listen(<a href='http://fantom.org/doc/sys/Str.html'>Str</a> mode, <a href='http://fantom.org/doc/sys/Duration.html'>Duration?</a> timeout, |<a href='http://fantom.org/doc/sys/Int.html'>Int</a>| callback)</code></p>
 
 <p>Register an interrupt handler to listen for GPIO output changes. The <code>mode</code> should be one of the strings "rising", "falling" or "both" to indicate which edge(s) the ISR is to be triggered on. Invoke the given callback function when a change occurs. This method will block listening until <code><a href='Gpio.html#close'>close</a></code> is called.</p>
+
+<p>If <code>timeout</code> is non-null, then <code>callback</code> will be invoked at every duration of <code>timeout</code> regardless of whether a state change occurred.  If <code>timeout</code> is null, this method blocks until a state change is detected.</p>
+
+<p>Note that after calling <code>listen</code>, you will receive an initial callback with the state of the pin. This prevents the race condition between getting the initial state of the pin and turning on interrupts.</p>
 </dd>
 <dt id='open'>
 open</dt>

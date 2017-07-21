@@ -32,7 +32,7 @@ jre.profile=1
 # Uncomment to add target platform to build
 target.bbb=true
 #target.rpi3=true</code></pre>
-<h2 id="using-fan-asm">Using <code>fan asm</code></h2>
+<h2 id="using-fan-studs-asm">Using <code>fan studs asm</code></h2>
 <p>The <code>asm</code> command is used to assemble firmware bundles from your application:</p>
 <pre><code>fan studs asm [target]* [--clean]</code></pre>
 <ul>
@@ -43,6 +43,12 @@ $ fan studs asm rpi3   # build only rpi3 target</code></pre></li>
 <pre><code>$ fan studs asm --clean</code></pre>
 <p>The next time <code>fan studs asm</code> is invoked, systems will be re-downloaded and configured, and the JRE will be rebuilt.</p></li>
 </ul>
+<h2 id="using-fan-studs-burn">Using <code>fan studs burn</code></h2>
+<p>The <code>burn</code> command writes your firmware bundle onto a SDCard:</p>
+<pre><code>fan studs burn [options]*</code></pre>
+<p>By default, this command detects attached SDCards and then invokes <code>fwup</code> to overwrite the contents of the selected SDCard with the new image. Data on the SDCard will be lost, so be careful.</p>
+<p>The <code>upgrade</code> option can be used to upgrade your application on an existing SDCard. In this case only the root application partition is effected – any data partitions will not be touched.</p>
+<pre><code>fan studs burn --upgrade</code></pre>
 <h2 id="jre-compact-profiles">JRE Compact Profiles</h2>
 <p>The <code>asm</code> command will generate any of the 3 compact profiles for the target embedded JRE. See <a href="http://www.oracle.com/technetwork/java/embedded/resources/tech/compact-profiles-overview-2157132.html">Compact Profiles Overview</a> for details and comparison of each profile.</p>
 <p>Studs defaults to profile <code>1</code> to minimize the release file size. The profile may be changed in <code>studs.props</code>:</p>
@@ -57,6 +63,20 @@ jre.profile=1</code></pre>
          ├─ bbb/
          └─ rpi3/</code></pre>
 <p>Any files under the <code>rootfs-additions/xxx/</code> will be directly added to the default root filesystem for the respective system. If a file in <code>rootfs-additions</code> already exists in the base image, it will replace the base copy.</p>
+<h2 id="pod-whitelistblacklist">Pod Whitelist/Blacklist</h2>
+<p>The <code>AsmCmd</code> will attempt to exclude certain pods that generally do not make sense to install in an embedded environment, in order to reduce the release firmware size. The default blacklist is:</p>
+<pre><code>studsTest, studsTools, docDomkit, docFanr, docIntro, docLang,
+docTools, icons, gfx, fwt, webfwt, flux, fluxTest, syntax, testCompiler,
+testDomkit, testJava, testNative, testSys</code></pre>
+<p>To add additional pods to the exclusion list, configure the <code>pod.blacklist</code> in your <code>studs.props</code>:</p>
+<pre><code># Comma-separated list of pods to exclude from release fw image.
+# This list is in addition to the default blacklist.
+pod.blacklist=myPodA,myPodB</code></pre>
+<p>To force a pod to always be included (such as a pod from the default blacklist), configure <code>pod.whitelist</code> in your <code>studs.props</code> file:</p>
+<pre><code># Comma-separated list of pods to always include in release fw
+# image. This list takes precedence over both the default and
+# above blacklists.
+pod.whitelist=gfx,fwt,myPod</code></pre>
 <h2 id="profile-configuration">Profile Configuration</h2>
 <p>If you build lots of projects, some configuration may become repetitive – particularly finding and copying the source JRE tarball into your project.</p>
 <p>To help streamline this process, you can create a <code>.studs</code> profile file in your home directory (<code>~/.studs</code>) to store project-wide configuration:</p>
@@ -74,9 +94,11 @@ jres.dir=/some/dir/</code></pre>
 </ul><h3>Basics</h3>
 <ul>
 <li class='h1'><a href='#building'>Building</a></li>
-<li class='h2'><a href='#using-fan-asm'>Using Fan Asm</a></li>
+<li class='h2'><a href='#using-fan-studs-asm'>Using Fan Studs Asm</a></li>
+<li class='h2'><a href='#using-fan-studs-burn'>Using Fan Studs Burn</a></li>
 <li class='h2'><a href='#jre-compact-profiles'>JRE Compact Profiles</a></li>
 <li class='h2'><a href='#rootfs-additions'>Rootfs Additions</a></li>
+<li class='h2'><a href='#pod-whitelistblacklist'>Pod Whitelistblacklist</a></li>
 <li class='h2'><a href='#profile-configuration'>Profile Configuration</a></li>
 <li class='h1'><a href='Daemons.html'>Daemons</a></li>
 <li class='h1'><a href='faninit.html'>Faninit</a></li>

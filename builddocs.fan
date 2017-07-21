@@ -42,6 +42,7 @@ class BuildDocs
   [
     "Tutorials",
     "Console",
+//    "Button",
     "UartGps",
   ]
 

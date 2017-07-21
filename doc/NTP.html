@@ -21,14 +21,23 @@
 </header>
 <div class='main'>
 <h1 id="ntp">NTP</h1>
-<p>TODO: coming in <code>1.5</code> or <code>1.6</code></p>
+<p>The <a href="../api/studs/Ntpd.html">Ntpd</a> daemon provides support for synchronizing wall clock time using the NTP protocol.</p>
 <h2 id="ntpd">Ntpd</h2>
-<p>TODO: yadda yadda</p>
-<pre><code>DaemonMgr {
-  it.daemons = [
-    Ntpd()
-  ]
-}.start</code></pre>
+<p>To use NTP simply start the daemon using <a href="../api/studs/Ntpd.html#start">start</a>, synchronization will begin in the background:</p>
+<pre><code>Ntpd().start</code></pre>
+<p>To block your application until a valid time has been acquired, first setup your network interface, then call <a href="../api/studs/Ntpd.html#sync">sync</a> to wait:</p>
+<pre><code>// start and setup network
+Networkd().start
+Networkd.cur.setup([&quot;name&quot;:&quot;eth0&quot;, &quot;mode&quot;:&quot;dhcp&quot;])
+
+// setup network interface, and block until NTP acquires time
+Ntpd().start
+Ntpd.cur.sync
+
+echo(&quot;Time is $DateTime.now&quot;)</code></pre>
+<p>An optional timeout may be passed to <a href="../api/studs/Ntpd.html#sync">sync</a>, where the method returns <code>true</code> if time was successfully acquired, or <code>false</code> if it timed out:</p>
+<pre><code>if (Ntpd.cur.sync(30sec)) echo(&quot;Time is $DateTime.now&quot;)
+else echo(&quot;Sync timed out&quot;)</code></pre>
 <aside>
 </ul><h3>Overview</h3>
 <ul>

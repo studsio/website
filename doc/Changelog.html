@@ -21,12 +21,30 @@
 </header>
 <div class='main'>
 <h1 id="changelog">Changelog</h1>
+<h4 id="version-1.6-21-jul-2017">Version 1.6 (21-Jul-2017)</h4>
+<ul>
+<li>Add <code>studs burn --upgrade</code> option to perform a <code>--task upgrade</code> during burn</li>
+<li>Fix <code>faninit</code> to start java under <code>/app/fan</code> working directory</li>
+<li>Networkd: rename fields <code>ipaddr,netmask -&gt; ip,mask</code></li>
+<li>Networkd: add <code>router</code> field for default route</li>
+<li>Fix <code>Ntpd.servers</code> to be mutable</li>
+<li>Add <code>Ntpd.sync</code> to block until time is acquired</li>
+<li>Add <code>libfan</code> for Fantom-JNI library support</li>
+<li>Networkd: fix to invoke <code>res_init</code> after updating <code>/etc/resolve.conf</code></li>
+<li>Fix <code>Daemon.cur</code> design to properly work across actors</li>
+<li>Blacklist unnecessary pods during <code>AsmCmd</code> (shaves <code>2.88MB</code> off release fw size)</li>
+<li>Add support for <code>pod.blacklist</code> and <code>pod.whitelist</code> in <code>studs.props</code></li>
+<li>Fix <code>Gpio.listen</code> to pass <code>mode</code> to fangpio</li>
+<li>Add <code>Gpio.listen</code> <code>timeout</code> argument</li>
+<li>Add <code>Sys.shutdown</code> method</li>
+<li>Add support for configuring JVM heap size with <code>jvm.xmx</code> in <code>faninit.props</code></li>
+</ul>
 <h4 id="version-1.5-4-may-2017">Version 1.5 (4-May-2017)</h4>
 <ul>
 <li>Add <code>repo.public</code> pod.meta for <code>studs,studsTools</code> for Eggbox</li>
 <li>Add <code>--clean</code> option for <code>AsmCmd</code> to delete <code>studs/systems/</code> and <code>studs/jres/</code> intermediate files</li>
 <li>Add <code>studs.props</code> support for configuring which JRE compact profile to use</li>
-<li>Make JRE profile default to <code>compact1</code> (saves 6MB off release size)</li>
+<li>Make JRE profile default to <code>compact1</code> (shaves <code>6MB</code> off release fw size)</li>
 <li>Update <code>GettingStarted</code> to include Linux installation instructions</li>
 <li>Fix <code>AsmCmd</code> JRE setup to work on Linux</li>
 <li>Beef up <code>Building.md</code> docs</li>

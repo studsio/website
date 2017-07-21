@@ -31,16 +31,21 @@ g.close</code></pre>
 <p>Once you are finished with a pin, call <a href="../api/studs/Gpio.html#close">close</a> to free the backing native process.</p>
 <h2 id="listening-for-changes">Listening for Changes</h2>
 <p>To monitor changes to a GPIO pin output, you can use <a href="../api/studs/Gpio.html#listen">Gpio.listen</a>. This method will register an interrupt handler that triggers on the rising, falling, or both edges and efficiently poll for pin state changes:</p>
-<pre><code>g := Gpio.open(18, &quot;out&quot;)
+<pre><code>g := Gpio.open(18, &quot;in&quot;)
 i := 0
 
-g.listen(&quot;falling&quot;) |val|
+g.listen(&quot;falling&quot;, null) |val|
 {
   echo(&quot;Pin is now $val&quot;)
   if (++i == 5) g.close
 }
 
 echo(&quot;Pin was read 5 times&quot;)</code></pre>
+<p>To receive a callback after a period of time has elpased (regardless if pin state has changed), pass in a duration to <a href="../api/studs/Gpio.html#listen">Gpio.listen</a>:</p>
+<pre><code>g.listen(&quot;rising&quot;, 5sec) |val|
+{
+  ...
+}</code></pre>
 <aside>
 </ul><h3>Overview</h3>
 <ul>

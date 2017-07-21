@@ -27,7 +27,9 @@
   <a href='Daemon.html'>studs::Daemon</a>
     studs::Networkd</pre>
 
-<p>Networkd</p>
+<p>Networking support in Studs is provided by the Networkd daemon.</p>
+
+<p>See <a href='../../doc/Networking.html'>Networking</a> chapter for details.</p>
 <dl>
 <dt id='cur'>
 cur</dt>
@@ -35,7 +37,15 @@ cur</dt>
 <p class='sig'>
 <code>const static <a href='Networkd.html'>Networkd?</a> cur(<a href='http://fantom.org/doc/sys/Bool.html'>Bool</a> checked := true)</code></p>
 
-<p>Get the Networkd instance for this vm.  If an instance is not found, throw Err if <code>checked</code> otherwise reutrn null.</p>
+<p>Get the Networkd instance for this VM.  If an instance is not found, throw Err if <code>checked</code> otherwise return null.</p>
+</dd>
+<dt id='list'>
+list</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/Str.html'>Str</a>:<a href='http://fantom.org/doc/sys/Obj.html'>Obj</a> list(<a href='http://fantom.org/doc/sys/Str.html'>Str</a> name, <a href='http://fantom.org/doc/sys/Duration.html'>Duration?</a> timeout := 10sec)</code></p>
+
+<p>List available network interfaces for this device. Blocks until <code>timeout</code> elapses waiting for results.  If <code>timeout</code> is <code>null</code> blocks forever.</p>
 </dd>
 <dt id='setup'>
 setup</dt>
@@ -45,6 +55,14 @@ setup</dt>
 
 <p>Configure a network interface.</p>
 </dd>
+<dt id='status'>
+status</dt>
+<dd>
+<p class='sig'>
+<code> <a href='http://fantom.org/doc/sys/Str.html'>Str</a>:<a href='http://fantom.org/doc/sys/Obj.html'>Obj</a> status(<a href='http://fantom.org/doc/sys/Str.html'>Str</a> name, <a href='http://fantom.org/doc/sys/Duration.html'>Duration?</a> timeout := 10sec)</code></p>
+
+<p>Get the status for given network interface. Blocks until <code>timeout</code> elapses waiting for results.  If <code>timeout</code> is <code>null</code> blocks forever.</p>
+</dd>
 </dl>
 </div>
 <div class='sidebar'>
@@ -53,7 +71,7 @@ setup</dt>
 <li>Not available</li></ul>
 <h3>Slots</h3>
 <ul>
-<li><a href='#cur'>cur</a></li><li><a href='#setup'>setup</a></li></ul>
+<li><a href='#cur'>cur</a></li><li><a href='#list'>list</a></li><li><a href='#setup'>setup</a></li><li><a href='#status'>status</a></li></ul>
 </div>
 </div>
 
