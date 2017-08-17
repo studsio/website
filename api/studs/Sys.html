@@ -28,6 +28,22 @@
 
 <p>Sys provides system level information and utilites for a target device.</p>
 <dl>
+<dt id='isDataMounted'>
+isDataMounted</dt>
+<dd>
+<p class='sig'>
+<code>const static <a href='http://fantom.org/doc/sys/Bool.html'>Bool</a> isDataMounted()</code></p>
+
+<p>Return true it the writable data parition is mounted. See <code><a href='Sys.html#mountData'>mountData</a></code>.</p>
+</dd>
+<dt id='mountData'>
+mountData</dt>
+<dd>
+<p class='sig'>
+<code>const static <a href='http://fantom.org/doc/sys/Void.html'>Void</a> mountData(<a href='http://fantom.org/doc/sys/Bool.html'>Bool</a> reformat := true)</code></p>
+
+<p>Mount the writable data partition for this device under the <code>/data</code> directory.  If the partition fails to mount and <code>reformat=true</code>, then the partition is automatically reformatted, and mount attempted again. Throws <code>IOErr</code> if data partition could not be mounted.  If partition is already mounted, this method does nothing.</p>
+</dd>
 <dt id='props'>
 props</dt>
 <dd>
@@ -72,7 +88,7 @@ shutdown</dt>
 <li>Not available</li></ul>
 <h3>Slots</h3>
 <ul>
-<li><a href='#props'>props</a></li><li><a href='#reboot'>reboot</a></li><li><a href='#shutdown'>shutdown</a></li></ul>
+<li><a href='#isDataMounted'>isDataMounted</a></li><li><a href='#mountData'>mountData</a></li><li><a href='#props'>props</a></li><li><a href='#reboot'>reboot</a></li><li><a href='#shutdown'>shutdown</a></li></ul>
 </div>
 </div>
 
