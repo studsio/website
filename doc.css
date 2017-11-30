@@ -88,9 +88,9 @@ pre {
   line-height: 1.4em;
 }
 
-div.figure { text-align: center; }
-div.figure img { max-width: 600px; }
-div.figure p.caption { display: none; }
+figure { text-align: center; }
+figure img { max-width: 600px; }
+figcaption { display: none; }
 
 footer {
   height: 2em;

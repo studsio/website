@@ -93,7 +93,7 @@ class BuildDocs
         echo(" $f.name")
         out := docOutDir + `${f.basename}.html`
         printHeader(out)
-        bash("pandoc -S -f markdown $f.osPath >> $out.osPath")
+        bash("pandoc -f markdown $f.osPath >> $out.osPath")
         printToc(out)
         printFooter(out)
       }
@@ -183,7 +183,7 @@ class BuildDocs
       echo(" $f.name")
       out := tutOutDir + `${f.basename}.html`
       printHeader(out, readTutTitle(f))
-      bash("pandoc -S -f markdown $f.osPath >> $out.osPath")
+      bash("pandoc -f markdown $f.osPath >> $out.osPath")
       printTuts(out)
       printFooter(out)
     }

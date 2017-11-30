@@ -66,7 +66,7 @@ $ hg clone ssh://hg@bitbucket.org/studs/system-bbb</code></pre>
 └── system-bbb</code></pre>
 <h3 id="macos-vagrant-setup">macOS Vagrant Setup</h3>
 <p>The simplest way to build on macOS is to use the supplied <a href="https://bitbucket.org/studs/system/src/tip/Vagrantfile">Vagrantfile</a>, which will allow you to host and edit the source on your Mac, and build on a Linux VM. To get started with Vagrant:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>Install <a href="https://www.vagrantup.com">Vagrant</a></p></li>
 <li><p>Install <a href="https://www.virtualbox.org">VirtualBox</a></p></li>
 <li><p>Modify the defaults in <code>system/Vagrantfile</code> for memory/cores to match your host:</p>
@@ -74,7 +74,7 @@ $ hg clone ssh://hg@bitbucket.org/studs/system-bbb</code></pre>
 VM_MEMORY=8192
 VM_CORES=4</code></pre></li>
 <li><p>Provision your VM – this will take a few minutes while it downloads and configures your new image:</p>
-<pre><code>$ cd system/vagrant
+<pre><code>$ cd system
 $ vagrant up</code></pre></li>
 <li><p>When provisioning is complete, log into your VM:</p>
 <pre><code>$ vagrant ssh</code></pre></li>
@@ -112,7 +112,7 @@ $ make
 # the system source directories
 $ cd output-bbb
 $ make</code></pre>
-<p>This will take a while (25-30min). Once complete, the next step is to package your system by running:</p>
+<p>This will take a while (15-20min). Once complete, the next step is to package your system by running:</p>
 <pre><code>$ make system</code></pre>
 <p>This will create a new tarball under the target <code>releases</code> directory:</p>
 <pre><code>system-bbb/releases/studs-system-bbb-1.0.0.tar.gz</code></pre>

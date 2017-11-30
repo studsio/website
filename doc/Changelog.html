@@ -21,6 +21,18 @@
 </header>
 <div class='main'>
 <h1 id="changelog">Changelog</h1>
+<h4 id="version-1.9-working">Version 1.9 (working)</h4>
+<h4 id="version-1.8-29-nov-2017">Version 1.8 (29-Nov-2017)</h4>
+<ul>
+<li>Change licence to Apache License 2.0</li>
+<li>Official support for <code>rpi0</code></li>
+<li>Update systems to <code>1.2</code>
+<ul>
+<li>Remove Erlang and dependencies from base system; we already did not distribute OTP releases, but this stills saves ~1MB off release fw size and cuts Buildroot make times from ~25min down to ~15min</li>
+</ul></li>
+<li>Update toolchains to <code>0.11.0</code></li>
+<li>Add <code>Cmd</code> warnings for retired <code>studs.props</code> and <code>faninit.props</code> properties</li>
+</ul>
 <h4 id="version-1.7-15-aug-2017">Version 1.7 (15-Aug-2017)</h4>
 <ul>
 <li>Update systems to <code>1.1</code> - see BitBucket for details:

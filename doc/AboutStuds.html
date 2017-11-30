@@ -26,10 +26,9 @@
 <p>From a developer’s perspective, the worldview for a piece of hardware is presented purely through a Fantom API. This keeps the abstractions high and the interactions consistent. In most cases you never need to leave Fantom. However, if a low level feature is required, Studs also includes easy to use cross-compiler toolchains to easily compile and package C binaries into your firmware.</p>
 <h2 id="architecture">Architecture</h2>
 <p>Studs is composed of primarily 3 layers:</p>
-<div class="figure">
-<img src="StudsArch.svg" alt="Studs Architecture" />
-<p class="caption">Studs Architecture</p>
-</div>
+<figure>
+<img src="StudsArch.svg" alt="Studs Architecture" /><figcaption>Studs Architecture</figcaption>
+</figure>
 <p>Looking at each section – starting from the bottom up:</p>
 <h3 id="system">System</h3>
 <p>Studs <a href="Systems.html">systems</a> are simply minimal Linux images built using <a href="https://buildroot.org">Buildroot</a>. They provide only the bare necessities for booting onto a specific hardware platform.</p>
