@@ -23,7 +23,7 @@ a { font-weight: bold; color: #2c3e50; }
 #masthead div { width: 800px; height: 250px; margin: auto; }
 #masthead div img { float: left; margin-right: 2em; }
 #masthead div h1 { font-size: 48px; margin: 0 0 10px 0; padding-top: 60px; }
-#masthead div h2 { font-size: 24px; font-weight: 300; margin: 0; }
+#masthead div h2 { font-size: 24px; font-weight: 300; margin: 0; line-height: 1.4em; opacity: 0.8; }
 
 #masthead + p { margin-top: 40px; clear: both; }
 
