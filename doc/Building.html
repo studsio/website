@@ -30,7 +30,7 @@ proj.ver=1.0.0
 jre.profile=1
 
 # Uncomment to add target platform to build
-target.bbb=true
+target.bb=true
 #target.rpi3=true</code></pre>
 <h2 id="using-fan-studs-asm">Using <code>fan studs asm</code></h2>
 <p>The <code>asm</code> command is used to assemble firmware bundles from your application:</p>
@@ -55,14 +55,14 @@ $ fan studs asm rpi3   # build only rpi3 target</code></pre></li>
 <pre><code># JRE compact profile for target: 1, 2 or 3
 jre.profile=1</code></pre>
 <p>Remember to run <code>asm --clean</code> after making any changes to <code>jre.profile</code>.</p>
-<h2 id="rootfs-additions">Rootfs Additions</h2>
-<p>To add additional files into the root filesystem, create a folder named <code>rootfs-additions</code> under the <code>src</code> directory, with a subdirectory for each system target:</p>
+<h2 id="rootfs-overlay">Rootfs Overlay</h2>
+<p>To add additional files into the root filesystem, create a folder named <code>rootfs_overlay</code> under the <code>src</code> directory, with a subdirectory for each system target:</p>
 <pre><code>myproj/
  └─ src/
-     └─ rootfs-additions/
-         ├─ bbb/
+     └─ rootfs_overlay/
+         ├─ bb/
          └─ rpi3/</code></pre>
-<p>Any files under the <code>rootfs-additions/xxx/</code> will be directly added to the default root filesystem for the respective system. If a file in <code>rootfs-additions</code> already exists in the base image, it will replace the base copy.</p>
+<p>Any files under the <code>rootfs_overlay/xxx/</code> will be directly added to the default root filesystem for the respective system. If a file in <code>rootfs_overlay</code> already exists in the base image, it will replace the base copy.</p>
 <h2 id="pod-whitelistblacklist">Pod Whitelist/Blacklist</h2>
 <p>The <code>AsmCmd</code> will attempt to exclude certain pods that generally do not make sense to install in an embedded environment, in order to reduce the release firmware size. The default blacklist is:</p>
 <pre><code>studsTest, studsTools, docDomkit, docFanr, docIntro, docLang,
@@ -97,7 +97,7 @@ jres.dir=/some/dir/</code></pre>
 <li class='h2'><a href='#using-fan-studs-asm'>Using Fan Studs Asm</a></li>
 <li class='h2'><a href='#using-fan-studs-burn'>Using Fan Studs Burn</a></li>
 <li class='h2'><a href='#jre-compact-profiles'>JRE Compact Profiles</a></li>
-<li class='h2'><a href='#rootfs-additions'>Rootfs Additions</a></li>
+<li class='h2'><a href='#rootfs-overlay'>Rootfs Overlay</a></li>
 <li class='h2'><a href='#pod-whitelistblacklist'>Pod Whitelistblacklist</a></li>
 <li class='h2'><a href='#profile-configuration'>Profile Configuration</a></li>
 <li class='h1'><a href='Daemons.html'>Daemons</a></li>

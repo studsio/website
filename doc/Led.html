@@ -33,7 +33,7 @@ Led.set(&quot;beaglebone:green:usr0&quot;, true)</code></pre>
 <pre><code>// on for 1sec; off for 500ms
 Led.blink(&quot;beaglebone:green:usr1&quot;, 1sec, 500ms)</code></pre>
 <h2 id="triggers">Triggers</h2>
-<p>A trigger is a kernel based source of LED events. Examples for the <code>bbb</code> are <code>heartbeat</code>, <code>mmc0</code>, <code>cpu0</code>. Consult your platform for available triggers and see the <a href="https://www.kernel.org/doc/Documentation/leds/leds-class.txt">Linux documentation</a> for low level details.</p>
+<p>A trigger is a kernel based source of LED events. Examples for the <code>bb</code> are <code>heartbeat</code>, <code>mmc0</code>, <code>cpu0</code>. Consult your platform for available triggers and see the <a href="https://www.kernel.org/doc/Documentation/leds/leds-class.txt">Linux documentation</a> for low level details.</p>
 <pre><code>Led.trigger(&quot;beaglebone:green:usr2&quot;, &quot;heartbeat&quot;)</code></pre>
 <aside>
 </ul><h3>Overview</h3>

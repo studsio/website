@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-  <title> Connecting PC to bbb/rpi3 serial console &ndash; Studs</title>
+  <title> Connecting PC to bb/rpi3 serial console &ndash; Studs</title>
   <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
   <!--
   <meta name='viewport' content='initial-scale=1.0' />
@@ -20,11 +20,11 @@
   <a href='https://bitbucket.org/studs'>BitBucket</a>
 </header>
 <div class='main'>
-<h1 id="connecting-pc-to-bbbrpi3-serial-console">Connecting PC to bbb/rpi3 serial console</h1>
+<h1 id="connecting-pc-to-bbrpi3-serial-console">Connecting PC to bb/rpi3 serial console</h1>
 <p>How to connect your PC to the serial console on the BeagleBone Black or Raspberry Pi 3. The serial console will allow you to view stdout as well as access the Linux shell.</p>
 <h2 id="usb-to-ttl-serial-cable">USB-to-TTL serial cable</h2>
 <p>A 3.3V FTDI cable is needed to access the output. These cables are available from:</p>
-<p><strong>bbb – 6pin FTDI cable:</strong></p>
+<p><strong>bb – 6pin FTDI cable:</strong></p>
 <ul>
 <li><a href="https://www.adafruit.com/products/70">Adafruit</a></li>
 <li><a href="https://www.sparkfun.com/products/9717">Sparkfun</a></li>
@@ -35,18 +35,18 @@
 <li><a href="https://www.adafruit.com/product/954">Adafruit</a></li>
 </ul>
 <h2 id="connecting-to-device">Connecting to Device</h2>
-<p>The console is configured to output to <code>ttyS0</code> by default on both the bbb and rpi3.</p>
-<h3 id="bbb">bbb</h3>
+<h3 id="bb">bb</h3>
+<p>The console is configured to output to <code>ttyS0</code> by default on the <code>bb</code>.</p>
 <p>UART <code>ttyS0</code> is accessible by the 6 pin header labeled J1 on the Beaglebone Black. Pin 1 on the cable is the black wire and connects to pin 1 on the board, the pin with the white dot next to it.</p>
 <p>A 4-pin cable may also be used, with only the GND, RX, and TX header pins connected.</p>
 <figure>
 <img src="console-bbb.png" alt="Wiring Diagram" /><figcaption>Wiring Diagram</figcaption>
 </figure>
 <h3 id="rpi3">rpi3</h3>
-<p>By default, the rpi3 will use HDMI for the console. To override and use <code>ttyS0</code> you need to modify your <code>faninit.props</code> (make sure to run <code>fan studs asm</code> after):</p>
+<p>By default, the rpi3 will use HDMI for the console. To override and use <code>ttyAMA0</code> you need to modify your <code>faninit.props</code> (make sure to run <code>fan studs asm</code> after):</p>
 <pre><code># Override the controlling terminal (ttyAMA0, tty1, etc.)
-tty.console=ttyS0</code></pre>
-<p>Then the cable can be connected to UART <code>ttyS0</code> via the GND, RXD, and TXD header pins:</p>
+tty.console=ttyAMA0</code></pre>
+<p>Then the cable can be connected to UART <code>ttyAMA0</code> via the GND, RXD, and TXD header pins:</p>
 <figure>
 <img src="console-rpi3.png" alt="Wiring Diagram" /><figcaption>Wiring Diagram</figcaption>
 </figure>
@@ -62,7 +62,7 @@ exit.run=/bin/sh</code></pre>
 <aside>
 <ul class='tut'>
 <li><a href='Tutorials.html'>Tutorials</a></li>
-<li><a href='Console.html'> Connecting PC to bbb/rpi3 serial console</a></li>
+<li><a href='Console.html'> Connecting PC to bb/rpi3 serial console</a></li>
 <li><a href='UartGps.html'> Using UART to read GPS module</a></li>
 </ul>
 </aside>

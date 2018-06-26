@@ -34,19 +34,19 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td>bbb</td>
-<td>BeagleBone Black</td>
-<td><a href="https://bitbucket.org/studs/system-bbb">Repo</a></td>
+<td>bb</td>
+<td>BeagleBone</td>
+<td><a href="https://github.com/studsio/system-bb">Repo</a></td>
 </tr>
 <tr class="even">
 <td>rpi3</td>
 <td>Raspberry Pi 3</td>
-<td><a href="https://bitbucket.org/studs/system-rpi3">Repo</a></td>
+<td><a href="https://github.com/studsio/system-rpi3">Repo</a></td>
 </tr>
 <tr class="odd">
 <td>rpi0</td>
 <td>Raspberry Pi Zero</td>
-<td><a href="https://bitbucket.org/studs/system-rpi0">Repo</a></td>
+<td><a href="https://github.com/studsio/system-rpi0">Repo</a></td>
 </tr>
 </tbody>
 </table>
@@ -54,23 +54,17 @@
 <p>To build a Studs system you will need a Linux PC or VM. This project supports building on macOS using <a href="https://www.vagrantup.com">Vagrant</a>. But most any Linux setup will work. This section will cover how to build an existing system from source. The follow section will cover how to create your own systems.</p>
 <h3 id="setup-build-directory">Setup Build Directory</h3>
 <p>First step is to setup our build directory and pull the system sources we will be using. This step should be done on the host system (not in your VM).</p>
-<p>Grab <code>hg</code> if needed:</p>
-<pre><code># macOS
-$ brew install mercurial
-
-# Debian/Ubuntu
-$ sudo apt-get install mercurial</code></pre>
-<p>Next pull the <code>base</code> and <code>bbb</code> system sources under a root <code>studs</code> directory:</p>
+<p>Pull the <code>base</code> and <code>bb</code> system sources under a root <code>studs</code> directory:</p>
 <pre><code>$ mkdir studs
 $ cd studs
-$ hg clone ssh://hg@bitbucket.org/studs/system
-$ hg clone ssh://hg@bitbucket.org/studs/system-bbb</code></pre>
+$ git clone git@github.com:studsio/system.git
+$ git clone git@github.com:studsio/system-bb.git</code></pre>
 <p>Afterwards your <code>studs</code> directory should look like this:</p>
 <pre><code>studs
 ├── system
-└── system-bbb</code></pre>
+└── system-bb</code></pre>
 <h3 id="macos-vagrant-setup">macOS Vagrant Setup</h3>
-<p>The simplest way to build on macOS is to use the supplied <a href="https://bitbucket.org/studs/system/src/tip/Vagrantfile">Vagrantfile</a>, which will allow you to host and edit the source on your Mac, and build on a Linux VM. To get started with Vagrant:</p>
+<p>The simplest way to build on macOS is to use the supplied <a href="https://github.com/studsio/system/blob/master/Vagrantfile">Vagrantfile</a>, which will allow you to host and edit the source on your Mac, and build on a Linux VM. To get started with Vagrant:</p>
 <ol type="1">
 <li><p>Install <a href="https://www.vagrantup.com">Vagrant</a></p></li>
 <li><p>Install <a href="https://www.virtualbox.org">VirtualBox</a></p></li>
@@ -86,7 +80,7 @@ $ vagrant up</code></pre></li>
 </ol>
 <p>Your host <code>studs</code> source directory will automatically be shared when you boot your Vagrant VM. It will be mounted under <code>~/studs</code> on Linux:</p>
 <pre><code>vagrant@jessie:~$ ls ~/studs
-system  system-bbb</code></pre>
+system  system-bb</code></pre>
 <p>Quick-start to using Vagrant:</p>
 <pre><code>$ vagrant up       # boot VM
 $ vargant ssh      # login to VM
@@ -99,7 +93,7 @@ $ vagrant destory  # delete VM -- &#39;vagrant up&#39; to recreate</code></pre>
 $ sudo apt-get install git g++ libssl-dev libncurses5-dev \
   bc m4 make unzip cmake python</code></pre>
 <p>Once you have setup Linux and download system sources, setup your build configuration for the intended target:</p>
-<pre><code>$ system/setup.sh bbb</code></pre>
+<pre><code>$ system/setup.sh bb</code></pre>
 <p>The <code>setup.sh</code> script will:</p>
 <ul>
 <li>Download and install Buildroot</li>
@@ -110,17 +104,17 @@ $ sudo apt-get install git g++ libssl-dev libncurses5-dev \
 <pre><code># macOS Vagrant -- we need to store our output directory outside of the
 # shared folder under Vagrant, since VirtualBox does not support creating
 # hardlinks in shared folders -- which Buildroot requires
-$ cd /home/vagrant/output-bbb/
+$ cd /home/vagrant/output-bb/
 $ make
 
 # Under native Linux the output direcotry will be created as a peer to
 # the system source directories
-$ cd output-bbb
+$ cd output-bb
 $ make</code></pre>
 <p>This will take a while (15-20min). Once complete, the next step is to package your system by running:</p>
 <pre><code>$ make system</code></pre>
 <p>This will create a new tarball under the target <code>releases</code> directory:</p>
-<pre><code>system-bbb/releases/studs-system-bbb-1.0.0.tar.gz</code></pre>
+<pre><code>system-bb/releases/studs-system-bb-1.0.0.tar.gz</code></pre>
 <h2 id="creating-a-new-system">Creating a New System</h2>
 <p>TODO</p>
 <aside>

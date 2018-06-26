@@ -53,11 +53,11 @@ $ fanr install -r http://eggbox.fantomfactory.org/fanr/ &quot;studs,studsTools&q
     ├── jres/            # target JREs installed here
     ├── systems/         # target systems installed here
     └── releases/        # compiled firmware images put here</code></pre>
-<p><code>studs.props</code> contains the configuration for your firmware, including the targets you wish to build for. The default target is <code>bbb</code>, but you may change or add additional targets by commenting/uncommenting them:</p>
+<p><code>studs.props</code> contains the configuration for your firmware, including the targets you wish to build for. The default target is <code>bb</code>, but you may change or add additional targets by commenting/uncommenting them:</p>
 <pre><code># studs.props
 
 # Uncomment to add target platform to build
-target.bbb=true
+target.bb=true
 #target.rpi3=true
 #target.rpi0=true</code></pre>
 <h2 id="install-embedded-jre">Install Embedded JRE</h2>
@@ -72,7 +72,7 @@ target.bbb=true
 </thead>
 <tbody>
 <tr class="odd">
-<td>BeagleBone Black</td>
+<td>BeagleBone</td>
 <td><a href="http://www.oracle.com/technetwork/java/embedded/embedded-se/downloads/javase-embedded-downloads-2209751.html">ejdk-8u###-linux-armv6-vfp-hflt.tar.gz</a></td>
 </tr>
 <tr class="even">
@@ -100,7 +100,7 @@ $ fan studs asm</code></pre>
 <pre><code>myproj/
 └── studs/
     └── releases/
-        └── myproj-1.0.0-bbb.fw</code></pre>
+        └── myproj-1.0.0-bb.fw</code></pre>
 <p>See <a href="Building.html">Building</a> for detailed documentation on the build process.</p>
 <h2 id="running-your-project">Running your Project</h2>
 <p>To run your freshly minted project we need to burn our firmware image onto a SD card:</p>
