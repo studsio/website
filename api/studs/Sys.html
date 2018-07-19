@@ -17,7 +17,7 @@
   <a href='../../doc/AboutStuds.html'>Documentation</a>
   <a href='../../tut/Tutorials.html'>Tutorials</a>
   <a href='../../api/studs/index.html'>API</a>
-  <a href='https://bitbucket.org/studs'>BitBucket</a>
+  <a href='https://github.com/studsio'>GitHub</a>
 </header>
 <div class='main'>
 <p class='api-index'><a href='index.html'>All Types</a></p><div class='mainSidebar'>
@@ -80,6 +80,18 @@ shutdown</dt>
 
 <p>Shutdown this device.</p>
 </dd>
+<dt id='updateFirmware'>
+updateFirmware</dt>
+<dd>
+<p class='sig'>
+<code>const static <a href='http://fantom.org/doc/sys/Void.html'>Void</a> updateFirmware(<a href='http://fantom.org/doc/sys/InStream.html'>InStream</a> in, |<a href='http://fantom.org/doc/sys/Int.html'>Int</a>|? onProgress := null)</code></p>
+
+<p>Update the firmware running on this device with the image streamed from the InStream <code>in</code>.  This method does <em>not</em> reboot device. A reboot must be issued for update to take effect.</p>
+
+<p>Use the optional <code>onProgress</code> callback to recieve update progress, where <code>prog</code> will be a number between 0..100 indicating the percentage complete.</p>
+
+<p>See <a href='../../doc/UpdatingFirmware.html'>Updating Firmware</a> chapter for details on how firwmare is updated.</p>
+</dd>
 </dl>
 </div>
 <div class='sidebar'>
@@ -88,7 +100,7 @@ shutdown</dt>
 <li>Not available</li></ul>
 <h3>Slots</h3>
 <ul>
-<li><a href='#isDataMounted'>isDataMounted</a></li><li><a href='#mountData'>mountData</a></li><li><a href='#props'>props</a></li><li><a href='#reboot'>reboot</a></li><li><a href='#shutdown'>shutdown</a></li></ul>
+<li><a href='#isDataMounted'>isDataMounted</a></li><li><a href='#mountData'>mountData</a></li><li><a href='#props'>props</a></li><li><a href='#reboot'>reboot</a></li><li><a href='#shutdown'>shutdown</a></li><li><a href='#updateFirmware'>updateFirmware</a></li></ul>
 </div>
 </div>
 

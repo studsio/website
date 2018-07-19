@@ -59,13 +59,14 @@ compile [hello]
 BUILD SUCCESS [34ms]!
 
 $ fan studs asm
-Assemble [rpi3]
+Assemble [rpi3-1.4]
   Downloading rpi3 system... 100%
   Install rpi3 system...
   Build linux-armv6-vfp-hflt jre [compact1]...
   Stage rootfs...
   Merge rootfs...
   Assemble firmware image...
+  Signing firmware image...
   Release:
     ~/hello/studs/releases/hello-1.0.0-rpi3.fw [25MB]
 ASM SUCCESS [24.77sec]!
@@ -73,8 +74,13 @@ ASM SUCCESS [24.77sec]!
 $ fan studs burn
 Use 15GB memory card found at /dev/rdisk3? [Yn]
 Burning hello-1.0.0-rpi3.fw to /dev/rdisk3...
-100%
-Elapsed time: 2.034s</pre>
+|====================================| 100% (25 / 25) MB
+Success!
+Elapsed time: 2.034s
+
+$ fan studs push 192.168.1.100
+Pushing hello-1.0.0-rpi3.fw to 192.168.1.100...
+Firmware upload successful. Now rebooting device to apply.</pre>
       </div>
   </div>
 

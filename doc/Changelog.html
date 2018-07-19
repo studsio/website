@@ -17,15 +17,38 @@
   <a href='../doc/AboutStuds.html'>Documentation</a>
   <a href='../tut/Tutorials.html'>Tutorials</a>
   <a href='../api/studs/index.html'>API</a>
-  <a href='https://bitbucket.org/studs'>BitBucket</a>
+  <a href='https://github.com/studsio'>GitHub</a>
 </header>
 <div class='main'>
 <h1 id="changelog">Changelog</h1>
+<h4 id="version-1.10-19-jul-2018">Version 1.10 (19-Jul-2018)</h4>
+<ul>
+<li>New end-to-end firmware signing support
+<ul>
+<li>All firmware is now required to be signed</li>
+</ul></li>
+<li>New new Httpd daemon for web server support</li>
+<li>New OTA firmware update support in Httpd</li>
+<li>New <code>Sys.updateFirmware</code> method</li>
+<li>New <code>PushCmd</code> to simplify pushing firmware from CLI</li>
+<li>Update <code>Sys</code> to log events (mount partition, updateFirmware, reboot, etc)</li>
+<li>Update AsmCmd to display system version in output</li>
+<li>Update AsmCmd to download system images from GitHub</li>
+<li>Update default pod blacklist to be stricter:
+<ul>
+<li>Saves 1.37MB bytes off release fw size</li>
+<li>Added to blacklist: <code>build</code>, <code>compiler</code>, <code>compilerDoc</code>, <code>compilerJava</code>, <code>compilerJs</code>, <code>email</code>, <code>fandoc</code>, <code>fanr</code>, <code>fansh</code>, <code>obix</code>, <code>sql</code></li>
+</ul></li>
+<li>Update systems to 1.4</li>
+<li>Fix BurnCmd to sort release filenames</li>
+<li>Fix Networkd.list argument bug</li>
+</ul>
 <h4 id="version-1.9-26-jun-2018">Version 1.9 (26-Jun-2018)</h4>
 <ul>
 <li>Rename <code>rootfs-additions</code> -&gt; <code>rootfs_overlay</code></li>
 <li>Update toolchains to <code>1.0.0</code></li>
 <li>Convert <code>system-bbb</code> -&gt; <code>system-bb</code> to reflect broader board support</li>
+<li>Update systems to <code>1.3</code></li>
 </ul>
 <h4 id="version-1.8-29-nov-2017">Version 1.8 (29-Nov-2017)</h4>
 <ul>
@@ -141,12 +164,14 @@
 <li class='h1'><a href='Building.html'>Building</a></li>
 <li class='h1'><a href='Daemons.html'>Daemons</a></li>
 <li class='h1'><a href='faninit.html'>Faninit</a></li>
+<li class='h1'><a href='UpdatingFirmware.html'>Updating Firmware</a></li>
 <li class='h1'><a href='Pack.html'>Pack</a></li>
 </ul>
 </ul><h3>Network</h3>
 <ul>
 <li class='h1'><a href='Networking.html'>Networking</a></li>
 <li class='h1'><a href='NTP.html'>NTP</a></li>
+<li class='h1'><a href='HttpServer.html'>Http Server</a></li>
 </ul>
 </ul><h3>I/O</h3>
 <ul>

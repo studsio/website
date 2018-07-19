@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-  <title>DaemonMsg &ndash; Studs</title>
+  <title>HttpConfig &ndash; Studs</title>
   <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
   <!--
   <meta name='viewport' content='initial-scale=1.0' />
@@ -22,43 +22,45 @@
 <div class='main'>
 <p class='api-index'><a href='index.html'>All Types</a></p><div class='mainSidebar'>
 <div class='main type'>
-<h1><span>const class</span> studs::DaemonMsg</h1>
+<h1><span>const class</span> studs::HttpConfig</h1>
 <pre><a href='http://fantom.org/doc/sys/Obj.html'>sys::Obj</a>
-  studs::DaemonMsg</pre>
+  studs::HttpConfig</pre>
 
-<p>DaemonMsg is used to send messages to <code><a href='Daemon.html'>Daemon</a></code> actors.</p>
+<p>Configuration settings for <code><a href='Httpd.html'>Httpd</a></code> daemon.</p>
 <dl>
-<dt id='a'>
-a</dt>
-<dd>
-<p class='sig'>
-<code>const <a href='http://fantom.org/doc/sys/Obj.html'>Obj?</a> a := null</code></p>
-</dd>
-<dt id='b'>
-b</dt>
-<dd>
-<p class='sig'>
-<code>const <a href='http://fantom.org/doc/sys/Obj.html'>Obj?</a> b := null</code></p>
-</dd>
-<dt id='c'>
-c</dt>
-<dd>
-<p class='sig'>
-<code>const <a href='http://fantom.org/doc/sys/Obj.html'>Obj?</a> c := null</code></p>
-</dd>
 <dt id='make'>
 make</dt>
 <dd>
 <p class='sig'>
-<code>new make(|<a href='http://fantom.org/doc/sys/This.html'>This</a>| f)</code></p>
+<code>new make(|<a href='http://fantom.org/doc/sys/This.html'>This</a>|? f := null)</code></p>
+
+<p>It-block constructor.</p>
 </dd>
-<dt id='op'>
-op</dt>
+<dt id='otaUpdateUri'>
+otaUpdateUri</dt>
 <dd>
 <p class='sig'>
-<code>const <a href='http://fantom.org/doc/sys/Str.html'>Str</a> op</code></p>
+<code>const <a href='http://fantom.org/doc/sys/Uri.html'>Uri?</a> otaUpdateUri := `/update-fw`</code></p>
 
-<p>Name of this message op.</p>
+<p>URI to publish for updating firmware over-the-air, or <code>null</code> to disable OTA firmware updates.</p>
+
+<p>See <a href='../../doc/UpdatingFirmware.html'>Updating Firmware</a> chapter for details on how firwmare is updated.</p>
+</dd>
+<dt id='port'>
+port</dt>
+<dd>
+<p class='sig'>
+<code>const <a href='http://fantom.org/doc/sys/Int.html'>Int</a> port := 80</code></p>
+
+<p>HTTP port to listen for requests.</p>
+</dd>
+<dt id='root'>
+root</dt>
+<dd>
+<p class='sig'>
+<code>const <a href='../web/WebMod.html'>WebMod?</a> root</code></p>
+
+<p>Root WebMod used to service requests.</p>
 </dd>
 </dl>
 </div>
@@ -68,7 +70,7 @@ op</dt>
 <li>Not available</li></ul>
 <h3>Slots</h3>
 <ul>
-<li><a href='#a'>a</a></li><li><a href='#b'>b</a></li><li><a href='#c'>c</a></li><li><a href='#make'>make</a></li><li><a href='#op'>op</a></li></ul>
+<li><a href='#make'>make</a></li><li><a href='#otaUpdateUri'>otaUpdateUri</a></li><li><a href='#port'>port</a></li><li><a href='#root'>root</a></li></ul>
 </div>
 </div>
 

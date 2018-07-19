@@ -31,8 +31,8 @@ class BuildDocs
   {
     it.ordered = true
     it.set("Overview", ["AboutStuds", "GettingStarted", "Changelog"])
-    it.set("Basics",   ["Building", "Daemons", "faninit", "Pack"])
-    it.set("Network",  ["Networking", "NTP"])
+    it.set("Basics",   ["Building", "Daemons", "faninit", "UpdatingFirmware", "Pack"])
+    it.set("Network",  ["Networking", "NTP", "HttpServer"])
     it.set("I/O",      ["Led", "Gpio", "I2C", "Spi", "Uart"])
     it.set("System",   ["Systems"])
   }
@@ -44,6 +44,7 @@ class BuildDocs
     "Console",
 //    "Button",
     "UartGps",
+    "WebInterface",
   ]
 
   Int main()
@@ -296,7 +297,7 @@ class BuildDocs
           <a href='${path}/doc/AboutStuds.html'>Documentation</a>
           <a href='${path}/tut/Tutorials.html'>Tutorials</a>
           <a href='${path}/api/studs/index.html'>API</a>
-          <a href='https://bitbucket.org/studs'>BitBucket</a>
+          <a href='https://github.com/studsio'>GitHub</a>
         </header>
         <div class='main'>
         """).flush.close
@@ -323,8 +324,10 @@ class BuildDocs
       if (s == "i2c")   return "I2C"
       if (s == "io")    return "I/O"
       if (s == "ip")    return "IP"
+      if (s == "http")  return "HTTP"
       if (s == "macos") return "MacOS"
       if (s == "onoff") return "On/Off"
+      if (s == "ota")   return "OTA"
       return s.capitalize
     }.join(" ")
   }
